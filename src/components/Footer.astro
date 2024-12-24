@@ -1,6 +1,62 @@
 ---
 import { SITE, SOCIALS } from "@consts";
 import Container from "@components/Container.astro";
+async function fetchStatus() {
+  try {
+    const response = await fetch(
+      "https://api.pulsetic.com/public/status/status.iith.dev",
+      {
+        method: "POST", // Set the method to POST
+        headers: {
+          "Content-Type": "application/json", // Assuming JSON payload
+        },
+        body: JSON.stringify({
+          // If the API expects any body data, include it here
+          // For example, passing some parameters:
+          key: "value",
+          password: null,
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const { data } = await response.json();
+    const monitors = data.monitors;
+
+    // Check and update the status based on the monitor data
+    if (monitors && monitors.length > 0) {
+      const allMonitorsUp = monitors.every(
+        (monitor: { status: string }) => monitor.status === "online"
+      );
+
+      return allMonitorsUp
+        ? "All systems operational"
+        : "Some systems are down";
+    } else {
+      return "No monitors found.";
+    }
+  } catch (error) {
+    console.error("Error fetching status:", error);
+    return error;
+  }
+}
+
+const status = await fetchStatus();
+let statusColor = "";
+
+if (status === "All systems operational") {
+  statusColor = "bg-green-500";
+} else if (status === "Some systems are down") {
+  statusColor = "bg-yellow-500";
+} else if (
+  status === "No monitors found." ||
+  status === "Error retrieving status."
+) {
+  statusColor = "bg-red-500";
+}
 ---
 
 <footer class="relative bg-white dark:bg-black">
@@ -56,22 +112,23 @@ import Container from "@components/Container.astro";
               href="/"
               class="flex gap-1 items-center w-fit font-semibold text-current hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out"
             >
-              <img src="/favicon-32x32.png" alt="Lambda IITH Logo"/>
+              <img src="/favicon-32x32.png" alt="Lambda IITH Logo" />
               <span>
                 {SITE.TITLE}
               </span>
             </a>
           </div>
+
           <div class="flex gap-2 justify-center sm:justify-end items-center">
             <span class="relative flex h-3 w-3">
               <span
-                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-300"
+                class=`animate-ping absolute inline-flex h-full w-full rounded-full bg-green-300`
               ></span>
               <span
-                class="relative inline-flex rounded-full h-3 w-3 bg-green-500"
+                class=`relative inline-flex rounded-full h-3 w-3 ${statusColor}`
               ></span>
             </span>
-            All systems normal
+            {status}
           </div>
         </div>
       </Container>
