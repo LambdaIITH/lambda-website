@@ -6,14 +6,11 @@ async function fetchStatus() {
     const response = await fetch(
       "https://api.pulsetic.com/public/status/status.iith.dev",
       {
-        method: "POST", // Set the method to POST
+        method: "POST",
         headers: {
-          "Content-Type": "application/json", // Assuming JSON payload
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          // If the API expects any body data, include it here
-          // For example, passing some parameters:
-          key: "value",
           password: null,
         }),
       }
@@ -26,7 +23,6 @@ async function fetchStatus() {
     const { data } = await response.json();
     const monitors = data.monitors;
 
-    // Check and update the status based on the monitor data
     if (monitors && monitors.length > 0) {
       const allMonitorsUp = monitors.every(
         (monitor: { status: string }) => monitor.status === "online"
@@ -105,11 +101,12 @@ if (status === "All systems operational") {
     <section
       class="py-5 overflow-hidden whitespace-nowrap border-t border-black/10 dark:border-white/25"
     >
-      <Container size="md">
+      <Container size="md"
+        >+
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div class="flex flex-col items-center sm:items-start">
             <a
-              href="/"
+              href=""
               class="flex gap-1 items-center w-fit font-semibold text-current hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out"
             >
               <img src="/favicon-32x32.png" alt="Lambda IITH Logo" />
@@ -118,18 +115,19 @@ if (status === "All systems operational") {
               </span>
             </a>
           </div>
-
-          <div class="flex gap-2 justify-center sm:justify-end items-center">
-            <span class="relative flex h-3 w-3">
-              <span
-                class=`animate-ping absolute inline-flex h-full w-full rounded-full bg-green-300`
-              ></span>
-              <span
-                class=`relative inline-flex rounded-full h-3 w-3 ${statusColor}`
-              ></span>
-            </span>
-            {status}
-          </div>
+          <a href="https://status.iith.dev" target="_blank">
+            <div class="flex gap-2 justify-center sm:justify-end items-center">
+              <span class="relative flex h-3 w-3">
+                <span
+                  class=`animate-ping absolute inline-flex h-full w-full rounded-full bg-green-300`
+                ></span>
+                <span
+                  class=`relative inline-flex rounded-full h-3 w-3 ${statusColor}`
+                ></span>
+              </span>
+              {status}
+            </div>
+          </a>
         </div>
       </Container>
     </section>
