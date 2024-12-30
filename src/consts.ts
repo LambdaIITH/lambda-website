@@ -13,6 +13,12 @@ export const WORK: Page = {
   DESCRIPTION: "Places I have worked.",
 }
 
+// About Page
+export const ABOUT = {
+  TITLE: "About Lambda.dev",
+  DESCRIPTION: "Learn about Lambda.dev, our mission, vision, and the technologies we use.",
+};
+
 // Blog Page
 export const BLOG: Page = {
   TITLE: "Blog",

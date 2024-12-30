@@ -4,9 +4,7 @@
     "strictNullChecks": true,
     "baseUrl": ".",
     "paths": {
-      "@*": [
-        "src/*"
-      ]
+      "@*": ["src/*"]
     },
     "jsx": "react-jsx",
     "jsxImportSource": "react"
@@ -14,10 +12,9 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
-    "src/**/*.astro"
-, "src/pages/test/index.jsx"  ],
-  "exclude": [
-    "dist",
-    "node_modules"
-  ]
+    "src/**/*.astro",
+    "src/pages/test/index.jsx",
+    "src/components/react/SliderDev.jsx"
+  ],
+  "exclude": ["dist", "node_modules"]
 }

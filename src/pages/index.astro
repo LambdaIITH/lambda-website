@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content"
 import PageLayout from "@layouts/PageLayout.astro"
-import ArrowCard from "@components/ArrowCard"
+import ArrowCard from "@components/react/ArrowCard"
 import StackCard from "@components/StackCard.astro"
 import { SITE, SOCIALS } from "@consts"
 import TwinklingStars from "@components/TwinklingStars.astro"
@@ -133,7 +133,7 @@ const stack = [
           <ul class="space-y-4">
             {posts.map((post: any) => (
               <li>
-                <ArrowCard entry={post} />
+                <ArrowCard entry={post} client:only="react" />
               </li>
             ))}
           </ul>
@@ -156,7 +156,7 @@ const stack = [
           <ul class="space-y-4">
             {projects.map((project: any) => (
               <li>
-                <ArrowCard entry={project} />
+                <ArrowCard entry={project}  client:only="react"/>
               </li>
             ))}
           </ul>

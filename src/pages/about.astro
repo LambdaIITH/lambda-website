@@ -1,0 +1,154 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "@layouts/PageLayout.astro";
+import TopLayout from "@layouts/TopLayout.astro";
+import BottomLayout from "@layouts/BottomLayout.astro";
+import { ABOUT } from "@consts";
+import { Image } from "astro:assets";
+import Home from "@components/react/SliderDev.jsx";
+import Counter from "@components/react/Number";
+
+// Fetch technologies from a collection (assuming you have one)
+const techCollection = await getCollection("technologies");
+
+// Sort technologies alphabetically
+techCollection.sort((a, b) => a.data.name.localeCompare(b.data.name));
+
+const technologies = await Promise.all(
+  techCollection.map(async (item) => {
+    const { Content } = await item.render();
+    return { ...item, Content };
+  })
+);
+---
+
+<PageLayout title={ABOUT.TITLE} description={ABOUT.DESCRIPTION}>
+  <TopLayout>
+    <div class="animate page-heading">
+      {ABOUT.TITLE}
+    </div>
+  </TopLayout>
+  <BottomLayout>
+    <div>
+      <!-- <Home client:only="react" /> -->
+
+      i am here
+      <Counter client:only="react" />
+
+      <div class="space-y-12">
+        <section class="prose dark:prose-invert max-w-none">
+          <h2 class="text-3xl font-bold mb-4">Who We Are</h2>
+          <p class="text-lg">
+            Lambda.dev is a cutting-edge software development company
+            specializing in creating innovative solutions for businesses of all
+            sizes. Our team of expert developers, designers, and project
+            managers work together to deliver high-quality, scalable
+            applications that drive growth and efficiency.
+          </p>
+        </section>
+
+        <section class="space-y-6">
+          <h2 class="text-3xl font-bold">Our Tech Stack</h2>
+          <div class="relative">
+            <div class="overflow-hidden">
+              <div class="flex animate-slide">
+                {
+                  technologies.map((tech) => (
+                    <div class="flex-shrink-0 w-32 mx-4">
+                      <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 h-32 flex flex-col items-center justify-center transition-transform hover:scale-105">
+                        <Image
+                          src={tech.data.icon}
+                          alt={tech.data.name}
+                          width={48}
+                          height={48}
+                          class="mb-2"
+                        />
+                        <span class="text-sm font-medium text-center">
+                          {tech.data.name}
+                        </span>
+                      </div>
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
+            <div
+              class="absolute inset-y-0 left-0 bg-gradient-to-r from-white dark:from-gray-900 to-transparent w-12"
+            >
+            </div>
+            <div
+              class="absolute inset-y-0 right-0 bg-gradient-to-l from-white dark:from-gray-900 to-transparent w-12"
+            >
+            </div>
+          </div>
+        </section>
+
+        <section class="grid md:grid-cols-2 gap-8">
+          <div class="prose dark:prose-invert max-w-none">
+            <h2 class="text-3xl font-bold mb-4">Our Mission</h2>
+            <p>
+              At Lambda.dev, our mission is to empower businesses through
+              innovative technology solutions. We strive to deliver cutting-edge
+              software that not only meets but exceeds our clients'
+              expectations, driving their success in the digital age.
+            </p>
+          </div>
+          <div class="prose dark:prose-invert max-w-none">
+            <h2 class="text-3xl font-bold mb-4">Our Vision</h2>
+            <p>
+              We envision a world where technology seamlessly integrates with
+              every aspect of business, enhancing productivity, creativity, and
+              growth. Lambda.dev aims to be at the forefront of this
+              technological revolution, continuously pushing the boundaries of
+              what's possible.
+            </p>
+          </div>
+        </section>
+
+        <section class="bg-gray-100 dark:bg-gray-800 rounded-lg p-8">
+          <h2 class="text-3xl font-bold mb-6 text-center">
+            Why Choose Lambda.dev?
+          </h2>
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md">
+              <h3 class="text-xl font-semibold mb-2">Expertise</h3>
+              <p>
+                Our team consists of highly skilled professionals with years of
+                experience in various technologies and industries.
+              </p>
+            </div>
+            <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md">
+              <h3 class="text-xl font-semibold mb-2">Innovation</h3>
+              <p>
+                We stay at the forefront of technology, constantly exploring new
+                tools and methodologies to deliver cutting-edge solutions.
+              </p>
+            </div>
+            <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md">
+              <h3 class="text-xl font-semibold mb-2">Client-Centric</h3>
+              <p>
+                Your success is our priority. We work closely with you to
+                understand your needs and deliver tailored solutions.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </BottomLayout>
+
+  <style>
+    @keyframes slide {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .animate-slide {
+      animation: slide 30s linear infinite;
+    }
+  </style>
+</PageLayout>
