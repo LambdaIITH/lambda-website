@@ -1,29 +1,72 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
-import { SITE } from "@consts";
+import { Boxes } from "@components/ui/background-boxes";
+import { cn } from "@lib/utils";
 ---
 
-<PageLayout title="404: Not Found" description="Oops! The page you're looking for doesn't exist.">
-  <div class="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white px-4 py-10">
-    <div class="flex flex-col items-center">
-      <h1 class="text-8xl font-extrabold mb-6 animate-bounce">404</h1>
-      <h2 class="text-4xl font-semibold mb-8 animate-fadeIn">Page Not Found</h2>
-      <p class="text-xl mb-8 max-w-2xl text-center">
+<PageLayout
+  title="404: Not Found"
+  description="Oops! The page you're looking for doesn't exist."
+>
+  <div
+    class="relative w-full overflow-hidden bg-slate-800 flex flex-col items-center justify-center rounded-lg min-h-screen bg-gradient-to-br from-indigo-900 via-purple-800 to-gray-900 text-white px-4 py-10 sm:py-20"
+  >
+    <div class="absolute inset-0 opacity-40">
+      <Boxes client:load />
+    </div>
+
+    <div class="relative z-10 flex flex-col items-center px-4 text-center space-y-6">
+      <h1 class="text-6xl sm:text-8xl font-extrabold mb-4 animate-bounce">404</h1>
+      <h2 class="text-2xl sm:text-4xl font-semibold mb-6 animate-fadeIn">
+        Page Not Found
+      </h2>
+      <p class="text-lg sm:text-xl max-w-lg">
         Oops! The page you're looking for doesn't exist or might have been moved.
       </p>
 
-      <div class="space-y-6 max-w-lg text-lg text-center">
-        <p class="text-lg">Here are some helpful links:</p>
-        <ul class="list-inside space-y-4">
-          <li><a href="/" class="text-blue-300 hover:text-blue-500 transition-all">Home</a></li>
-          <li><a href="/blog" class="text-blue-300 hover:text-blue-500 transition-all">Blog</a></li>
-          <li><a href="/projects" class="text-blue-300 hover:text-blue-500 transition-all">Projects</a></li>
-          <li><a href="/contact" class="text-blue-300 hover:text-blue-500 transition-all">Contact</a></li>
+      <div class="space-y-4">
+        <p class="text-lg font-medium">Here are some helpful links:</p>
+        <ul class="list-none space-y-3">
+          <li>
+            <a
+              href="/"
+              class="text-blue-400 hover:text-blue-600 transition-all"
+            >
+              Home
+            </a>
+          </li>
+          <li>
+            <a
+              href="/blog"
+              class="text-blue-400 hover:text-blue-600 transition-all"
+            >
+              Blog
+            </a>
+          </li>
+          <li>
+            <a
+              href="/projects"
+              class="text-blue-400 hover:text-blue-600 transition-all"
+            >
+              Projects
+            </a>
+          </li>
+          <li>
+            <a
+              href="/contact"
+              class="text-blue-400 hover:text-blue-600 transition-all"
+            >
+              Contact
+            </a>
+          </li>
         </ul>
       </div>
-      
-      <div class="mt-10">
-        <a href="/" class="px-8 py-4 bg-gradient-to-r from-blue-500 to-teal-400 text-white font-semibold rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300 ease-out">
+
+      <div class="mt-8">
+        <a
+          href="/"
+          class="px-6 py-3 bg-gradient-to-r from-blue-500 to-teal-400 text-white font-semibold rounded-lg shadow-lg hover:scale-105 transform transition-all duration-300 ease-out"
+        >
           Back to Home
         </a>
       </div>
