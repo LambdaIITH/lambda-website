@@ -5,8 +5,6 @@ import TopLayout from "@layouts/TopLayout.astro";
 import BottomLayout from "@layouts/BottomLayout.astro";
 import { ABOUT } from "@consts";
 import { Image } from "astro:assets";
-import Home from "@components/react/SliderDev.jsx";
-import Counter from "@components/react/Number";
 
 // Fetch technologies from a collection (assuming you have one)
 const techCollection = await getCollection("technologies");
@@ -32,8 +30,6 @@ const technologies = await Promise.all(
     <div>
       <!-- <Home client:only="react" /> -->
 
-      i am here
-      <Counter client:only="react" />
 
       <div class="space-y-12">
         <section class="prose dark:prose-invert max-w-none">
