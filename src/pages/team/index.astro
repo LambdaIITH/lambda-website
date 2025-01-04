@@ -1,0 +1,83 @@
+---
+import PageLayout from "@layouts/PageLayout.astro";
+import { SITE } from "@consts";
+import TeamPage from "@components/react/TeamPage";
+
+const mentors = [
+  {
+    name: "Dr. Anita Sharma",
+    role: "Faculty Advisor",
+    image: "/team/anita-sharma.jpg",
+    socialLinks: {
+      linkedin: "https://www.linkedin.com/in/dr-anita-sharma",
+    },
+  },
+  {
+    name: "Rahul Mehta",
+    role: "Industry Mentor",
+    image: "/team/rahul-mehta.jpg",
+    socialLinks: {
+      github: "https://github.com/rahulmehta",
+      linkedin: "https://www.linkedin.com/in/rahulmehta",
+    },
+  },
+];
+
+const heads = [
+  {
+    name: "Priya Patel",
+    role: "Club President",
+    image: "/team/priya-patel.jpg",
+    socialLinks: {
+      github: "https://github.com/priyapatel",
+      linkedin: "https://www.linkedin.com/in/priyapatel",
+      twitter: "https://twitter.com/priyapatel",
+    },
+  },
+  {
+    name: "Arjun Singh",
+    role: "Technical Lead",
+    image: "/team/arjun-singh.jpg",
+    socialLinks: {
+      github: "https://github.com/arjunsingh",
+      linkedin: "https://www.linkedin.com/in/arjunsingh",
+    },
+  },
+];
+
+const cores = [
+  {
+    name: "Neha Gupta",
+    role: "Web Development Lead",
+    image: "/team/neha-gupta.jpg",
+    socialLinks: {
+      github: "https://github.com/nehagupta",
+      linkedin: "https://www.linkedin.com/in/nehagupta",
+    },
+  },
+  {
+    name: "Vikram Reddy",
+    role: "AI/ML Lead",
+    image: "/team/vikram-reddy.jpg",
+    socialLinks: {
+      github: "https://github.com/vikramreddy",
+      linkedin: "https://www.linkedin.com/in/vikramreddy",
+      twitter: "https://twitter.com/vikramreddy",
+    },
+  },
+  {
+    name: "Aisha Khan",
+    role: "Design Lead",
+    image: "/team/aisha-khan.jpg",
+    socialLinks: {
+      github: "https://github.com/aishakhan",
+      linkedin: "https://www.linkedin.com/in/aishakhan",
+    },
+  },
+];
+---
+
+<PageLayout title="Our Team | Lambda Dev Club" description="Meet the amazing team behind Lambda Dev Club at IIT Hyderabad">
+  <TeamPage client:only="react" mentors={mentors} heads={heads} cores={cores} />
+</PageLayout>
+

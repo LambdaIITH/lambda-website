@@ -5,7 +5,11 @@ import TopLayout from "@layouts/TopLayout.astro";
 import BottomLayout from "@layouts/BottomLayout.astro";
 import { ABOUT } from "@consts";
 import { Image } from "astro:assets";
-import Number from "@components/react/Number";
+import Home from "@components/react/Home";
+import TestimonialSlider from "@components/react/TestimonialSlider";
+import EventTimeline from "@components/react/EventTimeline";
+import AchievementCounter from "@components/react/AchievementCounter";
+
 // Fetch technologies from a collection (assuming you have one)
 const techCollection = await getCollection("technologies");
 
@@ -18,132 +22,124 @@ const technologies = await Promise.all(
     return { ...item, Content };
   })
 );
+
+// Import images
+import picture1 from "./images/1.jpg";
+import picture2 from "./images/2.jpg";
+import picture3 from "./images/3.jpg";
+import clubLogo from "./images/lambda.png";
+
+// Testimonial data
+const testimonials = [
+  {
+    name: "Aarav Patel",
+    role: "Club President",
+    content: "Lambda has been an incredible platform for growth and innovation. It's amazing to see how our members collaborate and create cutting-edge projects.",
+    avatar: "/avatars/aarav.jpg"
+  },
+  {
+    name: "Zara Khan",
+    role: "Web Development Lead",
+    content: "Being part of Lambda has helped me improve my coding skills exponentially. The supportive community and challenging projects are unparalleled.",
+    avatar: "/avatars/zara.jpg"
+  },
+  {
+    name: "Vikram Singh",
+    role: "AI/ML Enthusiast",
+    content: "Lambda's workshops and hackathons have been instrumental in my journey to becoming a proficient AI developer. The exposure to real-world problems is invaluable.",
+    avatar: "/avatars/vikram.jpg"
+  }
+];
+
+// Event timeline data
+const events = [
+  { date: "2023-09-15", title: "Annual Hackathon", description: "48-hour coding marathon with exciting prizes" },
+  { date: "2023-10-20", title: "Tech Talk Series", description: "Industry experts share insights on emerging technologies" },
+  { date: "2023-11-05", title: "Code for a Cause", description: "Developing solutions for local non-profit organizations" },
+  { date: "2023-12-01", title: "Winter of Code", description: "Month-long program to contribute to open-source projects" }
+];
+
+// Achievement data
+const achievements = [
+  { label: "Active Members", value: 200, icon: "👥" },
+  { label: "Projects Completed", value: 50, icon: "🚀" },
+  { label: "Hackathons Won", value: 15, icon: "🏆" },
+  { label: "Workshops Conducted", value: 100, icon: "🎓" }
+];
 ---
 
 <PageLayout title={ABOUT.TITLE} description={ABOUT.DESCRIPTION}>
   <TopLayout>
-    <div class="animate page-heading">
-      {ABOUT.TITLE}
+    <div class="flex items-center justify-center space-x-4 animate-fadeIn">
+      <Image src={clubLogo} alt="Lambda Dev Club Logo" width={80} height={80} class="rounded-full" />
+      <h1 class="text-5xl font-bold text-primary">{ABOUT.TITLE}</h1>
     </div>
   </TopLayout>
+
+  <Home
+    client:only="react"
+    picture1={picture1.src}
+    picture2={picture2.src}
+    picture3={picture3.src}
+  />
+
   <BottomLayout>
-    <div>
-      <Number client:only="react" />
+    <div class="space-y-20">
+      <section class="prose dark:prose-invert max-w-none text-center space-y-6">
 
-      <div class="space-y-12">
-        <section class="prose dark:prose-invert max-w-none">
-          <h2 class="text-3xl font-bold mb-4">Who We Are</h2>
-          <p class="text-lg">
-            Lambda.dev is a cutting-edge software development company
-            specializing in creating innovative solutions for businesses of all
-            sizes. Our team of expert developers, designers, and project
-            managers work together to deliver high-quality, scalable
-            applications that drive growth and efficiency.
-          </p>
-        </section>
+        <h2 class="text-4xl font-bold text-primary">Who We Are</h2>
+        <p class="text-xl leading-relaxed text-muted">
+          Lambda is the premier developer club at IIT Hyderabad, fostering innovation and technical excellence. 
+          Our community of passionate coders, designers, and tech enthusiasts work together to push the boundaries 
+          of what's possible in software development.
+        </p>
+      </section>
 
-        <section class="space-y-6">
-          <h2 class="text-3xl font-bold">Our Tech Stack</h2>
-          <div class="relative">
-            <div class="overflow-hidden">
-              <div class="flex animate-slide">
-                {
-                  technologies.map((tech) => (
-                    <div class="flex-shrink-0 w-32 mx-4">
-                      <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 h-32 flex flex-col items-center justify-center transition-transform hover:scale-105">
-                        <Image
-                          src={tech.data.icon}
-                          alt={tech.data.name}
-                          width={48}
-                          height={48}
-                          class="mb-2"
-                        />
-                        <span class="text-sm font-medium text-center">
-                          {tech.data.name}
-                        </span>
-                      </div>
-                    </div>
-                  ))
-                }
-              </div>
-            </div>
-            <div
-              class="absolute inset-y-0 left-0 bg-gradient-to-r from-white dark:from-gray-900 to-transparent w-12"
-            >
-            </div>
-            <div
-              class="absolute inset-y-0 right-0 bg-gradient-to-l from-white dark:from-gray-900 to-transparent w-12"
-            >
-            </div>
-          </div>
-        </section>
+      <section class="space-y-8">
+        <h2 class="text-4xl font-bold text-center text-primary">Our Achievements</h2>
+        <AchievementCounter client:only="react" achievements={achievements} />
+      </section>
 
-        <section class="grid md:grid-cols-2 gap-8">
-          <div class="prose dark:prose-invert max-w-none">
-            <h2 class="text-3xl font-bold mb-4">Our Mission</h2>
-            <p>
-              At Lambda.dev, our mission is to empower businesses through
-              innovative technology solutions. We strive to deliver cutting-edge
-              software that not only meets but exceeds our clients'
-              expectations, driving their success in the digital age.
-            </p>
-          </div>
-          <div class="prose dark:prose-invert max-w-none">
-            <h2 class="text-3xl font-bold mb-4">Our Vision</h2>
-            <p>
-              We envision a world where technology seamlessly integrates with
-              every aspect of business, enhancing productivity, creativity, and
-              growth. Lambda.dev aims to be at the forefront of this
-              technological revolution, continuously pushing the boundaries of
-              what's possible.
-            </p>
-          </div>
-        </section>
+      <section class="space-y-8">
+        <h2 class="text-4xl font-bold text-center text-primary">Upcoming Events</h2>
+        <EventTimeline client:only="react" events={events} />
+      </section>
 
-        <section class="bg-gray-100 dark:bg-gray-800 rounded-lg p-8">
-          <h2 class="text-3xl font-bold mb-6 text-center">
-            Why Choose Lambda.dev?
-          </h2>
-          <div class="grid md:grid-cols-3 gap-6">
-            <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md">
-              <h3 class="text-xl font-semibold mb-2">Expertise</h3>
-              <p>
-                Our team consists of highly skilled professionals with years of
-                experience in various technologies and industries.
-              </p>
-            </div>
-            <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md">
-              <h3 class="text-xl font-semibold mb-2">Innovation</h3>
-              <p>
-                We stay at the forefront of technology, constantly exploring new
-                tools and methodologies to deliver cutting-edge solutions.
-              </p>
-            </div>
-            <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md">
-              <h3 class="text-xl font-semibold mb-2">Client-Centric</h3>
-              <p>
-                Your success is our priority. We work closely with you to
-                understand your needs and deliver tailored solutions.
-              </p>
-            </div>
-          </div>
-        </section>
-      </div>
+      <section class="space-y-8">
+        <h2 class="text-4xl font-bold text-center text-primary">What Our Members Say</h2>
+        <TestimonialSlider client:only="react" testimonials={testimonials} />
+      </section>
+
+      <section class="bg-gradient-to-r from-blue-500 to-green-400 dark:from-gray-800 dark:to-gray-900 text-white p-8 rounded-lg shadow-xl">
+        <h2 class="text-3xl font-bold mb-6 text-center">Join Lambda Today!</h2>
+        <p class="text-xl text-center mb-8">
+          Embark on an exciting journey of learning, innovation, and growth. 
+          Whether you're a coding novice or a tech wizard, there's a place for you in our community.
+        </p>
+        <div class="flex justify-center">
+          <a href="/join" class="bg-white text-blue-500 hover:bg-blue-100 text-lg font-semibold py-2 px-6 rounded-full transition-colors duration-300">
+            Apply Now
+          </a>
+        </div>
+      </section>
     </div>
   </BottomLayout>
 
   <style>
-    @keyframes slide {
+    @keyframes fadeIn {
       0% {
-        transform: translateX(0);
+        opacity: 0;
+        transform: translateY(20px);
       }
       100% {
-        transform: translateX(-50%);
+        opacity: 1;
+        transform: translateY(0);
       }
     }
 
-    .animate-slide {
-      animation: slide 30s linear infinite;
+    .animate-fadeIn {
+      animation: fadeIn 1.5s ease-out;
     }
   </style>
 </PageLayout>
+
