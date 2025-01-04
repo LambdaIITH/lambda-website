@@ -1,19 +1,21 @@
 import type { CollectionEntry } from "astro:content";
 import { createEffect, createSignal, For } from "solid-js";
-import ArrowCard from "@components/react/ArrowCard";
+import ArrowCard from "@components/solid/ArrowCard";
 import { cn } from "@lib/utils";
 
 type Props = {
   tags: string[];
-  data: CollectionEntry<"blog">[];
+  data: CollectionEntry<"projects">[];
 };
 
-export default function Blog({ data, tags }: Props) {
+export default function Projects({ data, tags }: Props) {
   const [filter, setFilter] = createSignal(new Set<string>());
-  const [posts, setPosts] = createSignal<CollectionEntry<"blog">[]>([]);
+  const [projects, setProjects] = createSignal<CollectionEntry<"projects">[]>(
+    []
+  );
 
   createEffect(() => {
-    setPosts(
+    setProjects(
       data.filter((entry) =>
         Array.from(filter()).every((value) =>
           entry.data.tags.some(
@@ -83,12 +85,12 @@ export default function Blog({ data, tags }: Props) {
       <div class="col-span-3 sm:col-span-2">
         <div class="flex flex-col">
           <div class="text-sm uppercase mb-2">
-            SHOWING {posts().length} OF {data.length} POSTS
+            SHOWING {projects().length} OF {data.length} PROJECTS
           </div>
           <ul class="flex flex-col gap-3">
-            {posts().map((post) => (
+            {projects().map((project) => (
               <li>
-                <ArrowCard entry={post} />
+                <ArrowCard entry={project} />
               </li>
             ))}
           </ul>

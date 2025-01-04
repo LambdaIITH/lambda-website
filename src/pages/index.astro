@@ -1,12 +1,12 @@
 ---
 import { getCollection } from "astro:content"
 import PageLayout from "@layouts/PageLayout.astro"
-import ArrowCard from "@components/react/ArrowCard"
+import ArrowCard from "@components/solid/ArrowCard"
 import StackCard from "@components/StackCard.astro"
 import { SITE, SOCIALS } from "@consts"
 import TwinklingStars from "@components/TwinklingStars.astro"
 import MeteorShower from "@components/MeteorShower.astro"
-import { ContainerScroll } from "@ui/container-scroll-animation"
+// import { ContainerScroll } from "@ui/container-scroll-animation"
 
 const posts = (await getCollection("blog"))
   .filter((post: { data: { draft: any } }) => !post.data.draft)

@@ -5,7 +5,7 @@ import TopLayout from "@layouts/TopLayout.astro";
 import BottomLayout from "@layouts/BottomLayout.astro";
 import { ABOUT } from "@consts";
 import { Image } from "astro:assets";
-
+import Number from "@components/react/Number";
 // Fetch technologies from a collection (assuming you have one)
 const techCollection = await getCollection("technologies");
 
@@ -28,8 +28,7 @@ const technologies = await Promise.all(
   </TopLayout>
   <BottomLayout>
     <div>
-      <!-- <Home client:only="react" /> -->
-
+      <Number client:only="react" />
 
       <div class="space-y-12">
         <section class="prose dark:prose-invert max-w-none">

@@ -1,22 +1,28 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "strictNullChecks": true,
     "baseUrl": ".",
     "paths": {
       "@*": ["src/*"]
-    },
-    "jsx": "react-jsx",
-    "jsxImportSource": "react"
+    }
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.astro",
-    "src/pages/test/index.jsx",
-    "src/components/react/SliderDev.jsx",
-    "src/components/react/Dev.tsx",
-    "src/components/Blog.tsx"
-  ],
-  "exclude": ["dist", "node_modules"]
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist", "node_modules"],
+  "overrides": [
+    {
+      "files": ["src/components/solid/**/*"],
+      "compilerOptions": {
+        "jsx": "preserve",
+        "jsxImportSource": "solid-js"
+      }
+    },
+    {
+      "files": ["src/components/react/**/*"],
+      "compilerOptions": {
+        "jsx": "react-jsx",
+        "jsxImportSource": "react"
+      }
+    }
+  ]
 }
+
