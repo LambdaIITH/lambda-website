@@ -15,7 +15,8 @@
     "src/**/*.astro",
     "src/pages/test/index.jsx",
     "src/components/react/SliderDev.jsx",
-    "src/components/react/Dev.tsx"
+    "src/components/react/Dev.tsx",
+    "src/components/Blog.tsx"
   ],
   "exclude": ["dist", "node_modules"]
 }
