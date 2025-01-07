@@ -1,0 +1,25 @@
+---
+interface Props {
+  type: "github" | "linkedin" | "twitter" | "instagram";
+  href: string;
+}
+
+const { type, href } = Astro.props;
+
+const icons = {
+  github: "fa-brands fa-github",
+  linkedin: "fa-brands fa-linkedin-in",
+  twitter: "fa-brands fa-x-twitter",
+  instagram: "fa-brands fa-instagram",
+};
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="text-purple-300/80 hover:text-purple-400 transition-all duration-300 hover:scale-125"
+>
+  <i class={`${icons[type]} text-2xl`}></i>
+</a>
+

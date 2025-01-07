@@ -1,0 +1,85 @@
+---
+import SocialIcon from "./SocialIcon.astro";
+
+interface Props {
+  name: string;
+  role: string;
+  image: string;
+  socialLinks: Record<string, string | undefined>;
+  priority?: boolean;
+}
+
+const { name, role, image, socialLinks, priority = false } = Astro.props;
+---
+
+<div
+  class="group relative transform transition-all duration-500 opacity-0 hover:scale-105"
+  data-team-card
+>
+  <div class="relative rounded-xl overflow-hidden">
+    {/* Card Background with Glow Effect */}
+    <div
+      class="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+    >
+    </div>
+    <div
+      class="bg-black/40 backdrop-blur-sm border border-purple-500/20 relative z-10"
+    >
+      {/* Image Container */}
+      <div class="relative h-[250px] sm:h-[300px] overflow-hidden">
+        <img
+          src={image}
+          alt={name}
+          class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
+          loading={priority ? "eager" : "lazy"}
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60 group-hover:opacity-40 transition-all duration-500"
+        >
+        </div>
+      </div>
+
+      {/* Content Container */}
+      <div class="p-4 sm:p-6 bg-black/50 backdrop-blur-sm relative z-20">
+        <h3
+          class="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-pink-300 text-center mb-2"
+        >
+          {name}
+        </h3>
+        <p class="text-base sm:text-lg text-purple-200/80 mb-4 text-center">
+          {role}
+        </p>
+
+        <div class="flex items-center justify-center gap-4 sm:gap-6">
+          {
+            Object.entries(socialLinks).map(
+              ([platform, url]) =>
+                url && <SocialIcon type={platform as any} href={url} />
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const cards = document.querySelectorAll("[data-team-card]");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate-cardEntry");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.2,
+      rootMargin: "50px",
+    }
+  );
+
+  cards.forEach((card) => observer.observe(card));
+</script>

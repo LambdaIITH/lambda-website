@@ -1,0 +1,59 @@
+---
+import TeamMemberCard from "./TeamMemberCard.astro";
+
+interface TeamMember {
+  name: string;
+  role: string;
+  image: string;
+  socialLinks: Record<string, string | undefined>;
+}
+
+interface Props {
+  title: string;
+  members: TeamMember[];
+  columns?: string;
+  isPriority?: boolean;
+}
+
+const {
+  title,
+  members,
+  columns = "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
+  isPriority = false,
+} = Astro.props;
+---
+
+<section class="mb-12 sm:mb-20 px-4 sm:px-0 opacity-0" data-team-section>
+  <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12">
+    <span
+      class="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 animate-shimmer"
+    >
+      {title}
+    </span>
+  </h2>
+  <div class={`grid ${columns} gap-6 sm:gap-8`}>
+    {
+      members.map((member, index) => (
+        <TeamMemberCard {...member} priority={isPriority && index < 2} />
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  const sections = document.querySelectorAll("[data-team-section]");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate-sectionEntry");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+</script>

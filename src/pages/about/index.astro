@@ -34,29 +34,48 @@ const testimonials = [
   {
     name: "Aarav Patel",
     role: "Club President",
-    content: "Lambda has been an incredible platform for growth and innovation. It's amazing to see how our members collaborate and create cutting-edge projects.",
-    avatar: "/avatars/aarav.jpg"
+    content:
+      "Lambda has been an incredible platform for growth and innovation. It's amazing to see how our members collaborate and create cutting-edge projects.",
+    avatar: "/avatars/aarav.jpg",
   },
   {
     name: "Zara Khan",
     role: "Web Development Lead",
-    content: "Being part of Lambda has helped me improve my coding skills exponentially. The supportive community and challenging projects are unparalleled.",
-    avatar: "/avatars/zara.jpg"
+    content:
+      "Being part of Lambda has helped me improve my coding skills exponentially. The supportive community and challenging projects are unparalleled.",
+    avatar: "/avatars/zara.jpg",
   },
   {
     name: "Vikram Singh",
     role: "AI/ML Enthusiast",
-    content: "Lambda's workshops and hackathons have been instrumental in my journey to becoming a proficient AI developer. The exposure to real-world problems is invaluable.",
-    avatar: "/avatars/vikram.jpg"
-  }
+    content:
+      "Lambda's workshops and hackathons have been instrumental in my journey to becoming a proficient AI developer. The exposure to real-world problems is invaluable.",
+    avatar: "/avatars/vikram.jpg",
+  },
 ];
 
 // Event timeline data
 const events = [
-  { date: "2023-09-15", title: "Annual Hackathon", description: "48-hour coding marathon with exciting prizes" },
-  { date: "2023-10-20", title: "Tech Talk Series", description: "Industry experts share insights on emerging technologies" },
-  { date: "2023-11-05", title: "Code for a Cause", description: "Developing solutions for local non-profit organizations" },
-  { date: "2023-12-01", title: "Winter of Code", description: "Month-long program to contribute to open-source projects" }
+  {
+    date: "2023-09-15",
+    title: "Annual Hackathon",
+    description: "48-hour coding marathon with exciting prizes",
+  },
+  {
+    date: "2023-10-20",
+    title: "Tech Talk Series",
+    description: "Industry experts share insights on emerging technologies",
+  },
+  {
+    date: "2023-11-05",
+    title: "Code for a Cause",
+    description: "Developing solutions for local non-profit organizations",
+  },
+  {
+    date: "2023-12-01",
+    title: "Winter of Code",
+    description: "Month-long program to contribute to open-source projects",
+  },
 ];
 
 // Achievement data
@@ -64,15 +83,23 @@ const achievements = [
   { label: "Active Members", value: 200, icon: "👥" },
   { label: "Projects Completed", value: 50, icon: "🚀" },
   { label: "Hackathons Won", value: 15, icon: "🏆" },
-  { label: "Workshops Conducted", value: 100, icon: "🎓" }
+  { label: "Workshops Conducted", value: 100, icon: "🎓" },
 ];
 ---
 
 <PageLayout title={ABOUT.TITLE} description={ABOUT.DESCRIPTION}>
   <TopLayout>
     <div class="flex items-center justify-center space-x-4 animate-fadeIn">
-      <Image src={clubLogo} alt="Lambda Dev Club Logo" width={80} height={80} class="rounded-full" />
-      <h1 class="text-5xl font-bold text-primary">{ABOUT.TITLE}</h1>
+      <Image
+        src={clubLogo}
+        alt="Lambda Dev Club Logo"
+        width={80}
+        height={80}
+        class="rounded-full"
+      />
+      <h1 class="text-5xl font-bold text-violet-600 dark:text-violet-400">
+        {ABOUT.TITLE}
+      </h1>
     </div>
   </TopLayout>
 
@@ -86,38 +113,58 @@ const achievements = [
   <BottomLayout>
     <div class="space-y-20">
       <section class="prose dark:prose-invert max-w-none text-center space-y-6">
-
-        <h2 class="text-4xl font-bold text-primary">Who We Are</h2>
-        <p class="text-xl leading-relaxed text-muted">
-          Lambda is the premier developer club at IIT Hyderabad, fostering innovation and technical excellence. 
-          Our community of passionate coders, designers, and tech enthusiasts work together to push the boundaries 
-          of what's possible in software development.
+        <h2 class="text-4xl font-bold text-violet-600 dark:text-violet-400">
+          Who We Are
+        </h2>
+        <p class="text-xl leading-relaxed text-gray-700 dark:text-gray-300">
+          Lambda is the premier developer club at IIT Hyderabad, fostering
+          innovation and technical excellence. Our community of passionate
+          coders, designers, and tech enthusiasts work together to push the
+          boundaries of what's possible in software development.
         </p>
       </section>
 
       <section class="space-y-8">
-        <h2 class="text-4xl font-bold text-center text-primary">Our Achievements</h2>
+        <h2
+          class="text-4xl font-bold text-center text-violet-600 dark:text-violet-400"
+        >
+          Our Achievements
+        </h2>
         <AchievementCounter client:only="react" achievements={achievements} />
       </section>
 
       <section class="space-y-8">
-        <h2 class="text-4xl font-bold text-center text-primary">Upcoming Events</h2>
+        <h2
+          class="text-4xl font-bold text-center text-violet-600 dark:text-violet-400"
+        >
+          Upcoming Events
+        </h2>
         <EventTimeline client:only="react" events={events} />
       </section>
 
       <section class="space-y-8">
-        <h2 class="text-4xl font-bold text-center text-primary">What Our Members Say</h2>
+        <h2
+          class="text-4xl font-bold text-center text-violet-600 dark:text-violet-400"
+        >
+          What Our Members Say
+        </h2>
         <TestimonialSlider client:only="react" testimonials={testimonials} />
       </section>
 
-      <section class="bg-gradient-to-r from-blue-500 to-green-400 dark:from-gray-800 dark:to-gray-900 text-white p-8 rounded-lg shadow-xl">
+      <section
+        class="bg-gradient-to-r from-violet-700 to-purple-900 dark:from-violet-900 dark:to-purple-950 text-white p-8 rounded-lg shadow-xl"
+      >
         <h2 class="text-3xl font-bold mb-6 text-center">Join Lambda Today!</h2>
         <p class="text-xl text-center mb-8">
-          Embark on an exciting journey of learning, innovation, and growth. 
-          Whether you're a coding novice or a tech wizard, there's a place for you in our community.
+          Embark on an exciting journey of learning, innovation, and growth.
+          Whether you're a coding novice or a tech wizard, there's a place for
+          you in our community.
         </p>
         <div class="flex justify-center">
-          <a href="/join" class="bg-white text-blue-500 hover:bg-blue-100 text-lg font-semibold py-2 px-6 rounded-full transition-colors duration-300">
+          <a
+            href="/join"
+            class="bg-white text-violet-700 hover:bg-violet-50 text-lg font-semibold py-2 px-6 rounded-full transition-colors duration-300"
+          >
             Apply Now
           </a>
         </div>
@@ -142,4 +189,3 @@ const achievements = [
     }
   </style>
 </PageLayout>
-

@@ -29,7 +29,7 @@ export default function Home({ picture1, picture2, picture3 }: HomeProps) {
 
   return (
     <main className="overflow-hidden">
-      <div className="h-[50vh] md:h-[100vh] flex items-center justify-center bg-gradient-to-r from-blue-500 to-green-400">
+      <div className="h-[50vh] md:h-[100vh] flex items-center justify-center bg-gradient-to-r from-violet-700 to-purple-900 dark:from-violet-900 dark:to-purple-950">
         <h1 className="text-4xl md:text-6xl font-bold text-white text-center">
           Welcome to Lambda Dev Club
         </h1>
@@ -58,7 +58,7 @@ export default function Home({ picture1, picture2, picture3 }: HomeProps) {
         />
       </div>
       <TechStackSlider />
-      <div className="h-[50vh] md:h-[100vh] flex items-center justify-center bg-gradient-to-r from-green-400 to-blue-500">
+      <div className="h-[50vh] md:h-[100vh] flex items-center justify-center bg-gradient-to-r from-purple-900 to-violet-700 dark:from-purple-950 dark:to-violet-900">
         <h2 className="text-3xl md:text-5xl font-bold text-white text-center">
           Join Us in Shaping the Future
         </h2>
@@ -103,7 +103,7 @@ interface PhraseProps {
 const Phrase: React.FC<PhraseProps> = ({ src, text }) => {
   return (
     <div className="px-5 flex gap-5 items-center">
-      <p className="text-[5vw] md:text-[3vw] lg:text-[2vw] font-bold text-primary">{text}</p>
+      <p className="text-[5vw] md:text-[3vw] lg:text-[2vw] font-bold text-violet-600 dark:text-violet-400">{text}</p>
       <span className="relative h-[10vw] md:h-[5vw] lg:h-[3vw] aspect-[4/3] rounded-lg overflow-hidden">
         <img
           src={src}

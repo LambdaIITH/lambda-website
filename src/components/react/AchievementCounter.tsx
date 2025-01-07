@@ -36,18 +36,18 @@ const AchievementCounter: React.FC<AchievementCounterProps> = ({ achievements })
           custom={index}
           initial={{ opacity: 0, y: 20 }}
           animate={controls}
-          className="text-center"
+          className="text-center p-6 bg-white/90 dark:bg-gray-800/90 rounded-lg shadow-lg backdrop-blur-sm border border-violet-100 dark:border-violet-900"
         >
           <div className="text-4xl mb-2">{achievement.icon}</div>
           <motion.span
-            className="text-3xl font-bold text-primary"
+            className="text-3xl font-bold text-violet-600 dark:text-violet-400"
             initial={{ opacity: 0 }}
             animate={counted ? { opacity: 1 } : {}}
             transition={{ duration: 1 }}
           >
             {counted ? achievement.value : 0}
           </motion.span>
-          <p className="text-lg text-gray-600 dark:text-gray-400">{achievement.label}</p>
+          <p className="text-lg text-violet-700 dark:text-violet-300">{achievement.label}</p>
         </motion.div>
       ))}
     </div>
