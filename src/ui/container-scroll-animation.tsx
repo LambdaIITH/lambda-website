@@ -55,7 +55,7 @@ const ContainerScroll2 = () => {
   );
 };
 
-const Header = ({ translate, titleComponent }) => (
+const Header = ({ translate, titleComponent }:any) => (
   <motion.div
     style={{ translateY: translate }}
     className="max-w-5xl mx-auto text-center"
@@ -64,7 +64,7 @@ const Header = ({ translate, titleComponent }) => (
   </motion.div>
 );
 
-const Card = ({ rotate, scale, children }) => (
+const Card = ({ rotate, scale, children }:any) => (
   <motion.div
     style={{
       rotateX: rotate,

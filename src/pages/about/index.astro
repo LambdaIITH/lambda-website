@@ -1,5 +1,4 @@
 ---
-import { getCollection } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
 import TopLayout from "@layouts/TopLayout.astro";
 import BottomLayout from "@layouts/BottomLayout.astro";
@@ -9,19 +8,6 @@ import Home from "@components/react/Home";
 import TestimonialSlider from "@components/react/TestimonialSlider";
 import EventTimeline from "@components/react/EventTimeline";
 import AchievementCounter from "@components/react/AchievementCounter";
-
-// Fetch technologies from a collection (assuming you have one)
-const techCollection = await getCollection("technologies");
-
-// Sort technologies alphabetically
-techCollection.sort((a, b) => a.data.name.localeCompare(b.data.name));
-
-const technologies = await Promise.all(
-  techCollection.map(async (item) => {
-    const { Content } = await item.render();
-    return { ...item, Content };
-  })
-);
 
 // Import images
 import picture1 from "./images/1.jpg";

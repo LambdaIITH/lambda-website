@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
 interface Testimonial {
   name: string;
@@ -12,7 +12,9 @@ interface TestimonialSliderProps {
   testimonials: Testimonial[];
 }
 
-const TestimonialSlider: React.FC<TestimonialSliderProps> = ({ testimonials }) => {
+const TestimonialSlider: React.FC<TestimonialSliderProps> = ({
+  testimonials,
+}) => {
   return (
     <div className="overflow-hidden">
       <motion.div
@@ -39,11 +41,17 @@ const TestimonialSlider: React.FC<TestimonialSliderProps> = ({ testimonials }) =
                   className="w-12 h-12 rounded-full mr-4 border-2 border-violet-400 dark:border-violet-600"
                 />
                 <div>
-                  <h3 className="font-semibold text-lg text-violet-700 dark:text-violet-300">{testimonial.name}</h3>
-                  <p className="text-violet-600 dark:text-violet-400">{testimonial.role}</p>
+                  <h3 className="font-semibold text-lg text-violet-700 dark:text-violet-300">
+                    {testimonial.name}
+                  </h3>
+                  <p className="text-violet-600 dark:text-violet-400">
+                    {testimonial.role}
+                  </p>
                 </div>
               </div>
-              <p className="text-gray-700 dark:text-gray-300">{testimonial.content}</p>
+              <p className="text-gray-700 dark:text-gray-300">
+                {testimonial.content}
+              </p>
             </div>
           </div>
         ))}

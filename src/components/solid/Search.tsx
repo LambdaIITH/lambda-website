@@ -22,40 +22,46 @@ export default function Search({ data }: Props) {
     if (query().length < 2) {
       setResults([]);
     } else {
-      setResults(fuse.search(query()).map((result) => result.item));
+      const searchResults = fuse.search(query());
+      setResults(searchResults.map((result) => result.item));
     }
   });
 
-  const onInput = (e: Event) => {
-    const target = e.target as HTMLInputElement;
-    setQuery(target.value);
+  const onInput = (e: InputEvent & { currentTarget: HTMLInputElement }) => {
+    setQuery(e.currentTarget.value);
   };
 
   return (
-    <div class="flex flex-col">
-      <div class="relative">
+    <div className="flex flex-col">
+      <div className="relative">
         <input
           name="search"
           type="text"
           value={query()}
-          onInput={onInput}
-          autocomplete="off"
-          spellcheck={false}
+          onInput={(e) => {
+            const target = e.currentTarget as HTMLInputElement;
+            setQuery(target.value);
+          }}
+          autoComplete="off"
+          spellCheck={false}
           placeholder="What are you looking for?"
-          class="w-full px-2.5 py-1.5 pl-10 rounded outline-none text-black dark:text-white bg-black/5 dark:bg-white/15 border border-black/10 dark:border-white/20 focus:border-black focus:dark:border-white"
+          className="w-full px-2.5 py-1.5 pl-10 rounded outline-none text-black dark:text-white bg-black/5 dark:bg-white/15 border border-black/10 dark:border-white/20 focus:border-black focus:dark:border-white"
         />
-        <svg class="absolute size-6 left-1.5 top-1/2 -translate-y-1/2 stroke-current">
+        <svg
+          className="absolute size-6 left-1.5 top-1/2 -translate-y-1/2 stroke-current"
+          aria-hidden="true"
+        >
           <use href={`/ui.svg#search`} />
         </svg>
       </div>
-      {query().length >= 2 && results().length >= 1 && (
-        <div class="mt-12">
-          <div class="text-sm uppercase mb-2">
+      {query().length >= 2 && results().length > 0 && (
+        <div className="mt-12">
+          <div className="text-sm uppercase mb-2">
             Found {results().length} results for {`'${query()}'`}
           </div>
-          <ul class="flex flex-col gap-3">
+          <ul className="flex flex-col gap-3">
             {results().map((result) => (
-              <li>
+              <li key={result.slug}>
                 <ArrowCard entry={result} pill={true} />
               </li>
             ))}
@@ -65,3 +71,4 @@ export default function Search({ data }: Props) {
     </div>
   );
 }
+
