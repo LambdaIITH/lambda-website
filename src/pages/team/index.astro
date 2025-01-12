@@ -2,83 +2,8 @@
 import PageLayout from "@layouts/PageLayout.astro";
 import { Boxes } from "@components/ui/background-boxes";
 import TeamSection from "@components/team/TeamSection.astro";
-
-const mentors = [
-  {
-    name: "Dr. Anita Sharma",
-    role: "Faculty Advisor",
-    image: "/team/anita-sharma.jpg",
-    socialLinks: {
-      linkedin: "https://www.linkedin.com/in/dr-anita-sharma",
-      instagram: "https://instagram.com/dr.anita.sharma",
-    },
-  },
-  {
-    name: "Rahul Mehta",
-    role: "Industry Mentor",
-    image: "/team/rahul-mehta.jpg",
-    socialLinks: {
-      github: "https://github.com/rahulmehta",
-      linkedin: "https://www.linkedin.com/in/rahulmehta",
-      instagram: "https://instagram.com/rahulmehta",
-    },
-  },
-];
-
-const heads = [
-  {
-    name: "Priya Patel",
-    role: "Club President",
-    image: "/team/priya-patel.jpg",
-    socialLinks: {
-      github: "https://github.com/priyapatel",
-      linkedin: "https://www.linkedin.com/in/priyapatel",
-      twitter: "https://twitter.com/priyapatel",
-      instagram: "https://instagram.com/priyapatel",
-    },
-  },
-  {
-    name: "Arjun Singh",
-    role: "Technical Lead",
-    image: "/team/arjun-singh.jpg",
-    socialLinks: {
-      github: "https://github.com/arjunsingh",
-      linkedin: "https://www.linkedin.com/in/arjunsingh",
-    },
-  },
-];
-
-const cores = [
-  {
-    name: "Neha Gupta",
-    role: "Web Development Lead",
-    image: "/team/neha-gupta.jpg",
-    socialLinks: {
-      github: "https://github.com/nehagupta",
-      linkedin: "https://www.linkedin.com/in/nehagupta",
-      instagram: "https://instagram.com/nehagupta",
-    },
-  },
-  {
-    name: "Vikram Reddy",
-    role: "AI/ML Lead",
-    image: "/team/vikram-reddy.jpg",
-    socialLinks: {
-      github: "https://github.com/vikramreddy",
-      linkedin: "https://www.linkedin.com/in/vikramreddy",
-      twitter: "https://twitter.com/vikramreddy",
-    },
-  },
-  {
-    name: "Aisha Khan",
-    role: "Design Lead",
-    image: "/team/aisha-khan.jpg",
-    socialLinks: {
-      github: "https://github.com/aishakhan",
-      linkedin: "https://www.linkedin.com/in/aishakhan",
-    },
-  },
-];
+import { Image } from "astro:assets";
+import { mentors, heads, cores, uiux } from "./data";
 ---
 
 <PageLayout
@@ -107,20 +32,43 @@ const cores = [
         </h1>
       </div>
 
-      <TeamSection
-        title="Mentors"
-        members={mentors}
-        columns="grid-cols-1 md:grid-cols-2"
-        isPriority={true}
-      />
+      <div class="space-y-16">
+        <section>
+          <h2 class="text-3xl font-bold text-center text-violet-400 mb-8">
+            Mentors
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
+            {
+              mentors.map((member) => (
+                <div class="flex items-center space-x-4 bg-black/50 p-6 rounded-lg">
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    width={100}
+                    height={100}
+                    class="rounded-full"
+                  />
+                  <div>
+                    <h3 class="text-xl font-semibold text-white">
+                      {member.name}
+                    </h3>
+                    <p class="text-violet-400">{member.role}</p>
+                    {/* <p class="text-gray-400 mt-2">{member.description}</p> */}
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </section>
 
-      <TeamSection
-        title="Club Heads"
-        members={heads}
-        columns="grid-cols-1 md:grid-cols-2"
-      />
+        <TeamSection
+          title="Club Heads"
+          members={heads}
+          columns="grid-cols-1 md:grid-cols-2"
+        />
 
-      <TeamSection title="Core Members" members={cores} />
+        <TeamSection title="Core Members" members={cores} />
+      </div>
     </div>
   </div>
 </PageLayout>

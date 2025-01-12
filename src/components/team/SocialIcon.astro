@@ -1,25 +1,23 @@
 ---
 interface Props {
-  type: "github" | "linkedin" | "twitter" | "instagram";
+  type: "github" | "linkedin" | "twitter" | "instagram" | "email";
   href: string;
 }
 
 const { type, href } = Astro.props;
-
-const icons = {
-  github: "fa-brands fa-github",
-  linkedin: "fa-brands fa-linkedin-in",
-  twitter: "fa-brands fa-x-twitter",
-  instagram: "fa-brands fa-instagram",
-};
 ---
 
 <a
   href={href}
   target="_blank"
   rel="noopener noreferrer"
-  class="text-purple-300/80 hover:text-purple-400 transition-all duration-300 hover:scale-125"
+  class="group transition-all duration-300 hover:scale-125"
+  title={`Visit ${type} profile`}
 >
-  <i class={`${icons[type]} text-2xl`}></i>
+  <svg
+    class="w-6 h-6 fill-purple-300/80 group-hover:fill-purple-400 transition-colors duration-300"
+    aria-hidden="true"
+  >
+    <use href={`/social.svg#${type}`}></use>
+  </svg>
 </a>
-

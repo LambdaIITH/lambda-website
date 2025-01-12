@@ -93,3 +93,4 @@ export const SOCIALS: Socials = [
     HREF: "https://www.linkedin.com/company/lambda-iit-hyderabad",
   },
 ];
+

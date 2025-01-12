@@ -5,7 +5,13 @@ interface Props {
   name: string;
   role: string;
   image: string;
-  socialLinks: Record<string, string | undefined>;
+  socialLinks: {
+    github?: string;
+    linkedin?: string;
+    twitter?: string;
+    instagram?: string;
+    email?: string;
+  };
   priority?: boolean;
 }
 
@@ -26,13 +32,29 @@ const { name, role, image, socialLinks, priority = false } = Astro.props;
       class="bg-black/40 backdrop-blur-sm border border-purple-500/20 relative z-10"
     >
       {/* Image Container */}
-      <div class="relative h-[250px] sm:h-[300px] overflow-hidden">
-        <img
-          src={image}
-          alt={name}
-          class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
-          loading={priority ? "eager" : "lazy"}
-        />
+      <div class="relative h-[250px] sm:h-[300px] lg:h-[350px] overflow-hidden">
+        <picture>
+          <source
+            srcset={image}
+            media="(min-width: 1024px)"
+            width="600"
+            height="600"
+          />
+          <source
+            srcset={image}
+            media="(min-width: 640px)"
+            width="400"
+            height="400"
+          />
+          <img
+            src={image}
+            alt={name}
+            width="300"
+            height="300"
+            class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
+            loading={priority ? "eager" : "lazy"}
+          />
+        </picture>
         <div
           class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60 group-hover:opacity-40 transition-all duration-500"
         >
@@ -50,11 +72,20 @@ const { name, role, image, socialLinks, priority = false } = Astro.props;
           {role}
         </p>
 
-        <div class="flex items-center justify-center gap-4 sm:gap-6">
+        <div class="flex items-center justify-center gap-6">
           {
-            Object.entries(socialLinks).map(
-              ([platform, url]) =>
-                url && <SocialIcon type={platform as any} href={url} />
+            socialLinks.github && (
+              <SocialIcon type="github" href={socialLinks.github} />
+            )
+          }
+          {
+            socialLinks.linkedin && (
+              <SocialIcon type="linkedin" href={socialLinks.linkedin} />
+            )
+          }
+          {
+            socialLinks.instagram && (
+              <SocialIcon type="instagram" href={socialLinks.instagram} />
             )
           }
         </div>
