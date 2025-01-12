@@ -277,7 +277,7 @@ export const cores: TeamMember[] = [
     role: "Core",
     image: "./images/Cores/Nishi Baranwal.png",
     socialLinks: {
-      github: "",
+      github: "https://github.com/NishiB137",
       linkedin: "",
       instagram: "",
     },
@@ -307,7 +307,7 @@ export const cores: TeamMember[] = [
     role: "Core",
     image: "./images/Cores/Samhitha.png",
     socialLinks: {
-      github: "",
+      github: "https://github.com/Samhitha1212",
       linkedin: "",
       instagram: "",
     },
@@ -347,7 +347,7 @@ export const cores: TeamMember[] = [
     role: "Core",
     image: "./images/Cores/Vindhya Paidala.png",
     socialLinks: {
-      github: "",
+      github: "https://github.com/VindhyaP312",
       linkedin: "",
       instagram: "",
     },
