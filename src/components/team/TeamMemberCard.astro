@@ -13,48 +13,53 @@ interface Props {
     email?: string;
   };
   priority?: boolean;
+  isHead?: boolean;
 }
 
-const { name, role, image, socialLinks, priority = false } = Astro.props;
+const {
+  name,
+  role,
+  image,
+  socialLinks,
+  priority = false,
+  isHead = false,
+} = Astro.props;
 ---
 
 <div
-  class="group relative transform transition-all duration-500 opacity-0 hover:scale-105"
+  class="group relative transform transition-all duration-300 hover:scale-105"
   data-team-card
 >
-  <div class="relative rounded-xl overflow-hidden">
+  <div
+    class:list={[
+      "relative rounded-xl overflow-hidden",
+      isHead && "head-card-border",
+    ]}
+  >
     {/* Card Background with Glow Effect */}
     <div
-      class="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+      class:list={[
+        "absolute inset-0 bg-gradient-to-r transition-opacity duration-500",
+        isHead
+          ? "from-purple-600/30 to-pink-600/30 opacity-50 group-hover:opacity-70"
+          : "from-purple-600/20 to-pink-600/20 opacity-0 group-hover:opacity-100",
+      ]}
     >
     </div>
     <div
       class="bg-black/40 backdrop-blur-sm border border-purple-500/20 relative z-10"
     >
       {/* Image Container */}
-      <div class="relative h-[250px] sm:h-[300px] lg:h-[350px] overflow-hidden">
-        <picture>
-          <source
-            srcset={image}
-            media="(min-width: 1024px)"
-            width="600"
-            height="600"
-          />
-          <source
-            srcset={image}
-            media="(min-width: 640px)"
-            width="400"
-            height="400"
-          />
-          <img
-            src={image}
-            alt={name}
-            width="300"
-            height="300"
-            class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
-            loading={priority ? "eager" : "lazy"}
-          />
-        </picture>
+      <div class="relative h-[250px] sm:h-[300px] lg:h-[300px] overflow-hidden">
+        <img
+          src={image}
+          alt={name}
+          width="400"
+          height="400"
+          class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
+          loading={priority ? "eager" : "lazy"}
+          decoding="async"
+        />
         <div
           class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60 group-hover:opacity-40 transition-all duration-500"
         >
@@ -95,22 +100,95 @@ const { name, role, image, socialLinks, priority = false } = Astro.props;
 </div>
 
 <script>
-  const cards = document.querySelectorAll("[data-team-card]");
+  function initializeCards() {
+    const cards = document.querySelectorAll("[data-team-card]");
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("animate-cardEntry");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      threshold: 0.2,
-      rootMargin: "50px",
-    }
-  );
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-cardEntry");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0,
+        rootMargin: "50px",
+      }
+    );
 
-  cards.forEach((card) => observer.observe(card));
+    cards.forEach((card) => {
+      (card as HTMLElement).style.opacity = "0";
+      observer.observe(card);
+    });
+  }
+
+  // Initialize on load and after dynamic content changes
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeCards);
+  } else {
+    initializeCards();
+  }
+  document.addEventListener("astro:page-load", initializeCards);
 </script>
+
+<style>
+  [data-team-card] {
+    transform: translateY(20px);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  [data-team-card].animate-cardEntry {
+    opacity: 1 !important;
+    transform: translateY(0);
+  }
+
+  .head-card-border {
+    position: relative;
+  }
+
+  .head-card-border::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(45deg, #7c3aed, #d946ef, #7c3aed, #d946ef);
+    border-radius: 12px;
+    z-index: -1;
+    animation: borderRotate 4s linear infinite;
+  }
+
+  .head-card-border::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    background: black;
+    border-radius: 11px;
+    z-index: -1;
+  }
+
+  @keyframes borderRotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes borderGlow {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  .head-card-border::before {
+    animation:
+      borderRotate 4s linear infinite,
+      borderGlow 2s ease-in-out infinite;
+  }
+</style>

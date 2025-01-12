@@ -13,6 +13,7 @@ interface Props {
   members: TeamMember[];
   columns?: string;
   isPriority?: boolean;
+  isHeadSection?: boolean;
 }
 
 const {
@@ -20,10 +21,11 @@ const {
   members,
   columns = "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
   isPriority = false,
+  isHeadSection = false,
 } = Astro.props;
 ---
 
-<section class="mb-12 sm:mb-20 px-4 sm:px-0 opacity-0" data-team-section>
+<section class="mb-12 sm:mb-20 px-4 sm:px-0 opacity-100" data-team-section>
   <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12">
     <span
       class="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 animate-shimmer"
@@ -34,26 +36,54 @@ const {
   <div class={`grid ${columns} gap-6 sm:gap-8`}>
     {
       members.map((member, index) => (
-        <TeamMemberCard {...member} priority={isPriority && index < 2} />
+        <TeamMemberCard
+          {...member}
+          priority={isPriority || index < 3}
+          isHead={isHeadSection}
+        />
       ))
     }
   </div>
 </section>
 
 <script>
-  const sections = document.querySelectorAll("[data-team-section]");
+  function initializeSections() {
+    const sections = document.querySelectorAll("[data-team-section]");
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("animate-sectionEntry");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.1 }
-  );
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-sectionEntry");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0,
+        rootMargin: "150px",
+      }
+    );
 
-  sections.forEach((section) => observer.observe(section));
+    sections.forEach((section) => observer.observe(section));
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeSections);
+  } else {
+    initializeSections();
+  }
+  document.addEventListener("astro:page-load", initializeSections);
 </script>
+
+<style>
+  [data-team-section] {
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
+
+  [data-team-section].animate-sectionEntry {
+    transform: translateY(0);
+  }
+</style>
