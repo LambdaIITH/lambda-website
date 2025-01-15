@@ -10,13 +10,25 @@ import { mentors, heads, cores, uiux } from "./data";
   title="Our Team | Lambda Dev Club"
   description="Meet the amazing team behind Lambda Dev Club at IIT Hyderabad"
 >
-  <div class="relative min-h-screen bg-black overflow-hidden">
-    <div class="absolute inset-0">
-      <div class="absolute inset-0 opacity-30">
+  {/* Navbar Background Overlay */}
+  <div
+    class="fixed top-0 left-0 right-0 h-20 bg-gradient-to-b from-gray-50/80 to-gray-50/0 dark:from-black/80 dark:to-black/0 backdrop-blur-md z-40"
+  >
+  </div>
+
+  <div
+    class="relative min-h-screen bg-gradient-to-b from-gray-50 via-purple-50/50 to-white dark:from-black dark:via-black dark:to-black overflow-hidden pt-20"
+  >
+    <div class="absolute inset-0 pt-20">
+      <div class="absolute inset-0 opacity-20 dark:opacity-30">
         <Boxes client:load />
       </div>
       <div
-        class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"
+        class="absolute inset-0 bg-gradient-to-b from-gray-50/80 via-white/50 to-white/80 dark:from-black dark:via-transparent dark:to-black"
+      >
+      </div>
+      <div
+        class="absolute inset-0 bg-white/40 dark:bg-transparent backdrop-blur-[2px]"
       >
       </div>
     </div>
@@ -25,7 +37,7 @@ import { mentors, heads, cores, uiux } from "./data";
       <div class="text-center mb-12 sm:mb-20 px-4">
         <h1 class="text-4xl sm:text-7xl font-black animate-title">
           <span
-            class="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 via-pink-400 to-purple-500 animate-shimmer inline-block"
+            class="bg-clip-text text-transparent bg-gradient-to-r from-purple-700 via-pink-600 to-purple-700 dark:from-purple-500 dark:via-pink-400 dark:to-purple-500 animate-shimmer inline-block"
           >
             Our Team
           </span>
@@ -36,24 +48,26 @@ import { mentors, heads, cores, uiux } from "./data";
         {
           mentors.length > 0 && (
             <section>
-              <h2 class="text-3xl font-bold text-center text-violet-400 mb-8">
+              <h2 class="text-3xl font-bold text-center text-violet-700 dark:text-violet-400 mb-8">
                 Mentors
               </h2>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
                 {mentors.map((member) => (
-                  <div class="flex items-center space-x-4 bg-black/50 p-6 rounded-lg">
+                  <div class="flex items-center space-x-4 bg-white/90 dark:bg-black/50 backdrop-blur-sm p-6 rounded-lg shadow-lg dark:shadow-none border border-purple-100/50 dark:border-purple-500/20">
                     <Image
                       src={member.image}
                       alt={member.name}
                       width={100}
                       height={100}
-                      class="rounded-full"
+                      class="rounded-full ring-2 ring-purple-100 dark:ring-purple-500/20"
                     />
                     <div>
-                      <h3 class="text-xl font-semibold text-white">
+                      <h3 class="text-xl font-semibold text-gray-800 dark:text-white">
                         {member.name}
                       </h3>
-                      <p class="text-violet-400">{member.role}</p>
+                      <p class="text-violet-700 dark:text-violet-400">
+                        {member.role}
+                      </p>
                     </div>
                   </div>
                 ))}
@@ -93,16 +107,25 @@ import { mentors, heads, cores, uiux } from "./data";
   }
 
   ::-webkit-scrollbar-track {
-    background: #000000;
+    background: theme(colors.gray.50);
+    @media (prefers-color-scheme: dark) {
+      background: #000000;
+    }
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #4c1d95;
+    background: theme(colors.purple.200);
     border-radius: 4px;
+    @media (prefers-color-scheme: dark) {
+      background: #4c1d95;
+    }
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #6d28d9;
+    background: theme(colors.purple.300);
+    @media (prefers-color-scheme: dark) {
+      background: #6d28d9;
+    }
   }
 
   /* Prevent background boxes from causing horizontal scroll */
@@ -123,5 +146,15 @@ import { mentors, heads, cores, uiux } from "./data";
 
   .animate-title {
     animation: title 1s ease-out forwards;
+  }
+
+  /* Add smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Improve navbar transition */
+  .fixed {
+    transition: background-color 0.3s ease-in-out;
   }
 </style>
