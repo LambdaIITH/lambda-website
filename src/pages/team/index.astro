@@ -1,7 +1,7 @@
 ---
-import PageLayout from "@layouts/PageLayout.astro";
-import { Boxes } from "@components/ui/background-boxes";
-import TeamSection from "@components/team/TeamSection.astro";
+import PageLayout from "../../layouts/PageLayout.astro";
+import { Boxes } from "../../components/ui/background-boxes";
+import TeamSection from "../../components/team/TeamSection.astro";
 import { Image } from "astro:assets";
 import { mentors, heads, cores, uiux } from "./data";
 ---
@@ -33,33 +33,34 @@ import { mentors, heads, cores, uiux } from "./data";
       </div>
 
       <div class="space-y-16">
-        <section>
-          <h2 class="text-3xl font-bold text-center text-violet-400 mb-8">
-            Mentors
-          </h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
-            {
-              mentors.map((member) => (
-                <div class="flex items-center space-x-4 bg-black/50 p-6 rounded-lg">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    width={100}
-                    height={100}
-                    class="rounded-full"
-                  />
-                  <div>
-                    <h3 class="text-xl font-semibold text-white">
-                      {member.name}
-                    </h3>
-                    <p class="text-violet-400">{member.role}</p>
-                    {/* <p class="text-gray-400 mt-2">{member.description}</p> */}
+        {
+          mentors.length > 0 && (
+            <section>
+              <h2 class="text-3xl font-bold text-center text-violet-400 mb-8">
+                Mentors
+              </h2>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
+                {mentors.map((member) => (
+                  <div class="flex items-center space-x-4 bg-black/50 p-6 rounded-lg">
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      width={100}
+                      height={100}
+                      class="rounded-full"
+                    />
+                    <div>
+                      <h3 class="text-xl font-semibold text-white">
+                        {member.name}
+                      </h3>
+                      <p class="text-violet-400">{member.role}</p>
+                    </div>
                   </div>
-                </div>
-              ))
-            }
-          </div>
-        </section>
+                ))}
+              </div>
+            </section>
+          )
+        }
 
         <TeamSection
           title="Club Heads"
@@ -70,6 +71,16 @@ import { mentors, heads, cores, uiux } from "./data";
         />
 
         <TeamSection title="Core Members" members={cores} />
+
+        {
+          uiux.length > 0 && (
+            <TeamSection
+              title="UI/UX Team"
+              members={uiux}
+              columns="grid-cols-1 md:grid-cols-3"
+            />
+          )
+        }
       </div>
     </div>
   </div>

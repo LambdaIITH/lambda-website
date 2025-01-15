@@ -1,8 +1,51 @@
+import type { ImageMetadata } from "astro";
+
+// // Import mentor images
+// import anitaSharmaImg from "./images/mentors/anita-sharma.jpg";
+// import rahulMehtaImg from "./images/mentors/rahul-mehta.jpg";
+
+// Import UI/UX team images
+import pranavImg from "./images/UIUX/Pranav.png";
+import radhikaRathiImg from "./images/UIUX/Radhika Rathi.png";
+import smaronBoruahImg from "./images/UIUX/Smaron Boruah.png";
+
+// Import heads images
+import adhithImg from "./images/Heads/Adhith T.png";
+import bhaskarImg from "./images/Heads/Bhaskar.png";
+import dikshantImg from "./images/Heads/Dikshant.png";
+import jashImg from "./images/Heads/Jash.png";
+
+// Import core team images
+import abdulMuqeethImg from "./images/Cores/Abdul Muqeeth.jpg";
+import anushaKumaresanImg from "./images/Cores/Anusha Kumaresan.png";
+import ankushSinghImg from "./images/Cores/Ankush Singh.png";
+import aryanImg from "./images/Cores/Aryan.png";
+import ashwinAgarwalImg from "./images/Cores/Ashwin Agarwal.png";
+import avyaazImg from "./images/Cores/Avyaaz.png";
+import bhuminHirparaImg from "./images/Cores/Bhumin Hirpara.png";
+import chaitanyaNemmaniImg from "./images/Cores/Chaitanya Nemmani.png";
+import deekshithPatelImg from "./images/Cores/Deekshith Patel.png";
+import ganeswarImg from "./images/Cores/Ganeswar.png";
+import gopiCharanReddyImg from "./images/Cores/Gopi Charan Reddy.png";
+import kSathwikImg from "./images/Cores/K Sathwik.png";
+import kartikImg from "./images/Cores/Kartik.png";
+import krishnaTejaImg from "./images/Cores/Krishna Teja.png";
+import lakshImg from "./images/Cores/Laksh.png";
+import meghanaSaiImg from "./images/Cores/Meghana Sai.png";
+import nishiBaranwalImg from "./images/Cores/Nishi Baranwal.png";
+import omkarKhilariImg from "./images/Cores/Omkar Khilari.png";
+import rishiImg from "./images/Cores/Rishi.png";
+import samhithaImg from "./images/Cores/Samhitha.png";
+import saranImg from "./images/Cores/Saran.png";
+import shravanBadgujarImg from "./images/Cores/Shravan Badgujar.png";
+import susiKrishnaImg from "./images/Cores/V S Susi Krishna.png";
+import vindhyaPaidalaImg from "./images/Cores/Vindhya Paidala.png";
+
 // Define the TeamMember type
 export interface TeamMember {
   name: string;
   role: string;
-  image: string;
+  image: ImageMetadata;
   socialLinks: {
     github?: string;
     linkedin?: string;
@@ -13,32 +56,32 @@ export interface TeamMember {
 }
 
 export const mentors: TeamMember[] = [
-  {
-    name: "Dr. Anita Sharma",
-    role: "Faculty Advisor",
-    image: "/team/anita-sharma.jpg",
-    socialLinks: {
-      linkedin: "https://www.linkedin.com/in/dr-anita-sharma",
-      instagram: "https://instagram.com/dr.anita.sharma",
-    },
-  },
-  {
-    name: "Rahul Mehta",
-    role: "Industry Mentor",
-    image: "/team/rahul-mehta.jpg",
-    socialLinks: {
-      github: "https://github.com/rahulmehta",
-      linkedin: "https://www.linkedin.com/in/rahulmehta",
-      instagram: "https://instagram.com/rahulmehta",
-    },
-  },
+  // {
+  //   name: "Dr. Anita Sharma",
+  //   role: "Faculty Advisor",
+  //   image: anitaSharmaImg,
+  //   socialLinks: {
+  //     linkedin: "https://www.linkedin.com/in/dr-anita-sharma",
+  //     instagram: "https://instagram.com/dr.anita.sharma",
+  //   },
+  // },
+  // {
+  //   name: "Rahul Mehta",
+  //   role: "Industry Mentor",
+  //   image: rahulMehtaImg,
+  //   socialLinks: {
+  //     github: "https://github.com/rahulmehta",
+  //     linkedin: "https://www.linkedin.com/in/rahulmehta",
+  //     instagram: "https://instagram.com/rahulmehta",
+  //   },
+  // },
 ];
 
 export const uiux: TeamMember[] = [
   {
     name: "Pranav",
     role: "UI/UX",
-    image: "./images/UIUX/Pranav.png",
+    image: pranavImg,
     socialLinks: {
       linkedin: "",
       instagram: "",
@@ -47,7 +90,7 @@ export const uiux: TeamMember[] = [
   {
     name: "Radhika Rathi",
     role: "UI/UX",
-    image: "./images/UIUX/Radhika Rathi.png",
+    image: radhikaRathiImg,
     socialLinks: {
       linkedin: "",
       instagram: "",
@@ -56,7 +99,7 @@ export const uiux: TeamMember[] = [
   {
     name: "Smaron Boruah",
     role: "UI/UX",
-    image: "./images/UIUX/Smaron Boruah.png",
+    image: smaronBoruahImg,
     socialLinks: {
       linkedin: "",
       instagram: "",
@@ -68,7 +111,7 @@ export const heads: TeamMember[] = [
   {
     name: "Adhith T",
     role: "Club Head",
-    image: "./images/Heads/Adhith T.png",
+    image: adhithImg,
     socialLinks: {
       github: "",
       linkedin: "",
@@ -79,7 +122,7 @@ export const heads: TeamMember[] = [
   {
     name: "Bhaskar",
     role: "Club Head",
-    image: "./images/Heads/Bhaskar.png",
+    image: bhaskarImg,
     socialLinks: {
       github: "",
       linkedin: "",
@@ -90,7 +133,7 @@ export const heads: TeamMember[] = [
   {
     name: "Dikshant",
     role: "Club Head",
-    image: "./images/Heads/Dikshant.png",
+    image: dikshantImg,
     socialLinks: {
       github: "",
       linkedin: "",
@@ -101,7 +144,7 @@ export const heads: TeamMember[] = [
   {
     name: "Jash",
     role: "Club Head",
-    image: "./images/Heads/Jash.png",
+    image: jashImg,
     socialLinks: {
       github: "",
       linkedin: "",
@@ -115,7 +158,7 @@ export const cores: TeamMember[] = [
   {
     name: "Abdul Muqeeth",
     role: "Core",
-    image: "./images/Cores/Abdul Muqeeth.jpg",
+    image: abdulMuqeethImg,
     socialLinks: {
       github: "https://github.com/muqeeth",
       linkedin: "https://www.linkedin.com/in/muqeeth/",
@@ -125,7 +168,7 @@ export const cores: TeamMember[] = [
   {
     name: "Anusha Kumaresan",
     role: "Core",
-    image: "./images/Cores/Anusha Kumaresan.png",
+    image: anushaKumaresanImg,
     socialLinks: {
       github: "",
       linkedin: "",
@@ -135,7 +178,7 @@ export const cores: TeamMember[] = [
   {
     name: "Ankush Singh",
     role: "Core",
-    image: "./images/Cores/Ankush Singh.png",
+    image: ankushSinghImg,
     socialLinks: {
       github: "",
       linkedin: "",
@@ -145,7 +188,7 @@ export const cores: TeamMember[] = [
   {
     name: "Aryan",
     role: "Core",
-    image: "./images/Cores/Aryan.png",
+    image: aryanImg,
     socialLinks: {
       github: "",
       linkedin: "",
@@ -155,7 +198,7 @@ export const cores: TeamMember[] = [
   {
     name: "Ashwin Agarwal",
     role: "Core",
-    image: "./images/Cores/Ashwin Agarwal.png",
+    image: ashwinAgarwalImg,
     socialLinks: {
       github: "",
       linkedin: "",
@@ -165,7 +208,7 @@ export const cores: TeamMember[] = [
   {
     name: "Avyaaz",
     role: "Core",
-    image: "./images/Cores/Avyaaz.png",
+    image: avyaazImg,
     socialLinks: {
       github: "",
       linkedin: "",
@@ -175,7 +218,7 @@ export const cores: TeamMember[] = [
   {
     name: "Bhumin Hirpara",
     role: "Core",
-    image: "./images/Cores/Bhumin Hirpara.png",
+    image: bhuminHirparaImg,
     socialLinks: {
       github: "",
       linkedin: "",
@@ -185,7 +228,7 @@ export const cores: TeamMember[] = [
   {
     name: "Chaitanya Nemmani",
     role: "Core",
-    image: "./images/Cores/Chaitanya Nemmani.png",
+    image: chaitanyaNemmaniImg,
     socialLinks: {
       github: "",
       linkedin: "",
@@ -195,7 +238,7 @@ export const cores: TeamMember[] = [
   {
     name: "Deekshith Patel",
     role: "Core",
-    image: "./images/Cores/Deekshith Patel.png",
+    image: deekshithPatelImg,
     socialLinks: {
       github: "",
       linkedin: "",
@@ -205,7 +248,7 @@ export const cores: TeamMember[] = [
   {
     name: "Ganeswar",
     role: "Core",
-    image: "./images/Cores/Ganeswar.png",
+    image: ganeswarImg,
     socialLinks: {
       github: "",
       linkedin: "",
@@ -215,7 +258,7 @@ export const cores: TeamMember[] = [
   {
     name: "Gopi Charan Reddy",
     role: "Core",
-    image: "./images/Cores/Gopi Charan Reddy.png",
+    image: gopiCharanReddyImg,
     socialLinks: {
       github: "",
       linkedin: "",
@@ -225,7 +268,7 @@ export const cores: TeamMember[] = [
   {
     name: "K Sathwik",
     role: "Core",
-    image: "./images/Cores/K Sathwik.png",
+    image: kSathwikImg,
     socialLinks: {
       github: "",
       linkedin: "",
@@ -235,7 +278,7 @@ export const cores: TeamMember[] = [
   {
     name: "Kartik",
     role: "Core",
-    image: "./images/Cores/Kartik.png",
+    image: kartikImg,
     socialLinks: {
       github: "",
       linkedin: "",
@@ -245,7 +288,7 @@ export const cores: TeamMember[] = [
   {
     name: "Krishna Teja",
     role: "Core",
-    image: "./images/Cores/Krishna Teja.png",
+    image: krishnaTejaImg,
     socialLinks: {
       github: "",
       linkedin: "",
@@ -255,7 +298,7 @@ export const cores: TeamMember[] = [
   {
     name: "Laksh",
     role: "Core",
-    image: "./images/Cores/Laksh.png",
+    image: lakshImg,
     socialLinks: {
       github: "",
       linkedin: "",
@@ -265,7 +308,7 @@ export const cores: TeamMember[] = [
   {
     name: "Meghana Sai",
     role: "Core",
-    image: "./images/Cores/Meghana Sai.png",
+    image: meghanaSaiImg,
     socialLinks: {
       github: "",
       linkedin: "",
@@ -275,7 +318,7 @@ export const cores: TeamMember[] = [
   {
     name: "Nishi Baranwal",
     role: "Core",
-    image: "./images/Cores/Nishi Baranwal.png",
+    image: nishiBaranwalImg,
     socialLinks: {
       github: "",
       linkedin: "",
@@ -285,7 +328,7 @@ export const cores: TeamMember[] = [
   {
     name: "Omkar Khilari",
     role: "Core",
-    image: "./images/Cores/Omkar Khilari.png",
+    image: omkarKhilariImg,
     socialLinks: {
       github: "",
       linkedin: "",
@@ -295,7 +338,7 @@ export const cores: TeamMember[] = [
   {
     name: "Rishi",
     role: "Core",
-    image: "./images/Cores/Rishi.png",
+    image: rishiImg,
     socialLinks: {
       github: "",
       linkedin: "",
@@ -305,7 +348,7 @@ export const cores: TeamMember[] = [
   {
     name: "Samhitha",
     role: "Core",
-    image: "./images/Cores/Samhitha.png",
+    image: samhithaImg,
     socialLinks: {
       github: "",
       linkedin: "",
@@ -315,7 +358,7 @@ export const cores: TeamMember[] = [
   {
     name: "Saran",
     role: "Core",
-    image: "./images/Cores/Saran.png",
+    image: saranImg,
     socialLinks: {
       github: "",
       linkedin: "",
@@ -325,7 +368,7 @@ export const cores: TeamMember[] = [
   {
     name: "Shravan Badgujar",
     role: "Core",
-    image: "./images/Cores/Shravan Badgujar.png",
+    image: shravanBadgujarImg,
     socialLinks: {
       github: "",
       linkedin: "",
@@ -335,7 +378,7 @@ export const cores: TeamMember[] = [
   {
     name: "V S Susi Krishna",
     role: "Core",
-    image: "./images/Cores/V S Susi Krishna.png",
+    image: susiKrishnaImg,
     socialLinks: {
       github: "",
       linkedin: "",
@@ -345,7 +388,7 @@ export const cores: TeamMember[] = [
   {
     name: "Vindhya Paidala",
     role: "Core",
-    image: "./images/Cores/Vindhya Paidala.png",
+    image: vindhyaPaidalaImg,
     socialLinks: {
       github: "",
       linkedin: "",
