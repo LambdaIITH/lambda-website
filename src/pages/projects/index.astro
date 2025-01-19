@@ -1,28 +1,95 @@
 ---
-import { getCollection } from "astro:content"
-import PageLayout from "@layouts/PageLayout.astro"
-import TopLayout from "@layouts/TopLayout.astro"
-import BottomLayout from "@layouts/BottomLayout.astro"
-import Projects from "@components/solid/Projects"
-import { PROJECTS } from "@consts"
+import { getCollection } from "astro:content";
+import PageLayout from "@layouts/PageLayout.astro";
+import TopLayout from "@layouts/TopLayout.astro";
+import BottomLayout from "@layouts/BottomLayout.astro";
+import Projects from "@components/solid/Projects";
+import { PROJECTS } from "@consts";
 
 const projects = (await getCollection("projects"))
-  .filter(project => !project.data.draft)
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .filter((project) => !project.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-const tags = [...new Set(projects.flatMap(project => project.data.tags))]
-  .sort((a, b) => a.localeCompare(b))
+const tags = [
+  ...new Set(projects.flatMap((project) => project.data.tags)),
+].sort((a, b) => a.localeCompare(b));
 ---
 
 <PageLayout title={PROJECTS.TITLE} description={PROJECTS.DESCRIPTION}>
-  <TopLayout>
-    <div class="animate page-heading">
-      {PROJECTS.TITLE}
+  <div
+    class="relative min-h-screen bg-gradient-to-b from-purple-50 to-white dark:from-purple-950 dark:to-black"
+  >
+    {/* Purple glow effects */}
+    <div
+      class="absolute inset-0 bg-gradient-to-tr from-purple-500/5 via-transparent to-purple-500/5 dark:from-purple-900/20 dark:via-transparent dark:to-purple-900/20 pointer-events-none"
+    >
     </div>
-  </TopLayout>
-  <BottomLayout>
-    <div class="animate">
-      <Projects client:load tags={tags} data={projects} />
+
+    {/* Subtle grid pattern */}
+    <div
+      class="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] dark:bg-[url('/grid-dark.svg')] pointer-events-none opacity-50"
+    >
     </div>
-  </BottomLayout>
+
+    {/* Header Section */}
+    <div class="relative">
+      <TopLayout>
+        <div class="space-y-6 text-center">
+          <h1
+            class="text-4xl sm:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-purple-500 to-purple-600 dark:from-purple-400 dark:via-purple-300 dark:to-purple-400 animate-gradient"
+          >
+            {PROJECTS.TITLE}
+          </h1>
+          <p
+            class="text-lg sm:text-xl text-purple-800/80 dark:text-purple-200/80 max-w-2xl mx-auto"
+          >
+            {PROJECTS.DESCRIPTION}
+          </p>
+        </div>
+      </TopLayout>
+    </div>
+
+    {/* Projects Section */}
+    <div class="relative">
+      <BottomLayout>
+        <div class="animate-fade-in">
+          <Projects client:only="solid-js" tags={tags} data={projects} />
+        </div>
+      </BottomLayout>
+    </div>
+  </div>
 </PageLayout>
+
+<style>
+  .animate-gradient {
+    background-size: 200% auto;
+    animation: gradient 8s linear infinite;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 1s ease-out forwards;
+  }
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

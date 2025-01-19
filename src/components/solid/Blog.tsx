@@ -1,5 +1,5 @@
 import type { CollectionEntry } from "astro:content";
-import { createEffect, createSignal, For } from "solid-js";
+import { createEffect, createSignal } from "solid-js";
 import ArrowCard from "@components/solid/ArrowCard";
 import { cn } from "@lib/utils";
 
@@ -40,63 +40,59 @@ export default function Blog({ data, tags }: Props) {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-      <div className="col-span-3 sm:col-span-1">
-        <div className="sticky top-24">
-          <div className="text-sm font-semibold uppercase mb-2 text-black dark:text-white">
-            Filter
-          </div>
-          <ul className="flex flex-wrap sm:flex-col gap-1.5">
-            {tags.map((tag) => (
-              <li>
-                <button
-                  onClick={() => toggleTag(tag)}
-                  className={cn(
-                    "w-full px-2 py-1 rounded",
-                    "whitespace-nowrap overflow-hidden overflow-ellipsis",
-                    "flex gap-2 items-center",
-                    "bg-black/5 dark:bg-white/10",
-                    "hover:bg-black/10 hover:dark:bg-white/15",
-                    "transition-colors duration-300 ease-in-out",
-                    filter().has(tag) && "text-black dark:text-white"
-                  )}
-                >
-                  <svg
-                    className={cn(
-                      "size-5 fill-black/50 dark:fill-white/50",
-                      "transition-colors duration-300 ease-in-out",
-                      filter().has(tag) && "fill-black dark:fill-white"
-                    )}
-                  >
-                    <use
-                      href={`/ui.svg#square`}
-                      className={cn(!filter().has(tag) ? "block" : "hidden")}
-                    />
-                    <use
-                      href={`/ui.svg#square-check`}
-                      className={cn(filter().has(tag) ? "block" : "hidden")}
-                    />
-                  </svg>
-                  {tag}
-                </button>
-              </li>
-            ))}
-          </ul>
+    <div className="space-y-8">
+      {/* Tags Section */}
+      <div className="bg-white dark:bg-purple-950/10 rounded-xl border border-purple-100 dark:border-purple-800 p-6">
+        <div className="flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <button
+              onClick={() => toggleTag(tag)}
+              key={tag}
+              className={cn(
+                "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200",
+                filter().has(tag)
+                  ? "bg-purple-900 dark:bg-purple-100 text-white dark:text-purple-900"
+                  : "bg-purple-100/80 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 hover:bg-purple-200 dark:hover:bg-purple-800/40"
+              )}
+            >
+              {tag}
+              {filter().has(tag) && <span className="ml-2 text-xs">×</span>}
+            </button>
+          ))}
         </div>
       </div>
-      <div className="col-span-3 sm:col-span-2">
-        <div className="flex flex-col">
-          <div className="text-sm uppercase mb-2">
+
+      {/* Posts Section */}
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <h2 className="text-sm font-medium text-purple-900 dark:text-purple-100">
             SHOWING {posts().length} OF {data.length} POSTS
-          </div>
-          <ul className="flex flex-col gap-3">
-            {posts().map((post) => (
-              <li>
-                <ArrowCard entry={post} />
-              </li>
-            ))}
-          </ul>
+          </h2>
+          {filter().size > 0 && (
+            <button
+              onClick={() => setFilter(new Set())}
+              className="text-sm text-purple-600 dark:text-purple-400 hover:text-purple-800 dark:hover:text-purple-200 transition-colors"
+            >
+              Clear Filters
+            </button>
+          )}
         </div>
+
+        {/* Posts Grid */}
+        <div className="space-y-4">
+          {posts().map((post) => (
+            <ArrowCard entry={post} key={post.slug} />
+          ))}
+        </div>
+
+        {/* Empty State */}
+        {posts().length === 0 && (
+          <div className="text-center py-12 bg-white dark:bg-purple-950/10 rounded-xl border border-purple-100 dark:border-purple-800">
+            <p className="text-purple-600 dark:text-purple-400">
+              No posts found with the selected filters.
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
