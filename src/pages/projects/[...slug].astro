@@ -1,35 +1,48 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content"
-import PageLayout from "@layouts/PageLayout.astro"
-import TopLayout from "@layouts/TopLayout.astro"
-import BottomLayout from "@layouts/BottomLayout.astro"
-import ArticleTopLayout from "@layouts/ArticleTopLayout.astro"
-import ArticleBottomLayout from "@layouts/ArticleBottomLayout.astro"
+import { getCollection } from "astro:content";
+import PageLayout from "@layouts/PageLayout.astro";
+import TopLayout from "@layouts/TopLayout.astro";
+import BottomLayout from "@layouts/BottomLayout.astro";
+import ArticleTopLayout from "@layouts/ArticleTopLayout.astro";
+import ArticleBottomLayout from "@layouts/ArticleBottomLayout.astro";
 
 // Create the static projects pages
 export async function getStaticPaths() {
-	const projects = await getCollection("projects")
-	return projects.map((project) => ({
-		params: { slug: project.slug },
-		props: project,
-	}))
+  const projects = await getCollection("projects");
+  return projects.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
 }
 
 // Get the requested project
-type Props = CollectionEntry<"projects">
-const project = Astro.props
-const { title, summary } = project.data
+const { entry } = Astro.props;
+const { title, summary } = entry.data;
 ---
 
 <PageLayout title={title} description={summary}>
-  <TopLayout>
-    <div class="animate">
-      <ArticleTopLayout entry={project} />
+  <div
+    class="relative min-h-screen bg-gradient-to-b from-purple-50 to-white dark:from-purple-950 dark:to-black"
+  >
+    {/* Purple glow effects */}
+    <div
+      class="absolute inset-0 bg-gradient-to-tr from-purple-500/5 via-transparent to-purple-500/5 dark:from-purple-900/20 dark:via-transparent dark:to-purple-900/20 pointer-events-none"
+    >
     </div>
-  </TopLayout>
-  <BottomLayout>
-    <div class="animate">
-      <ArticleBottomLayout entry={project} />
+
+    {/* Subtle grid pattern */}
+    <div
+      class="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] dark:bg-[url('/grid-dark.svg')] pointer-events-none opacity-50"
+    >
     </div>
-  </BottomLayout>
+
+    <div class="relative">
+      <TopLayout>
+        <ArticleTopLayout entry={entry} />
+      </TopLayout>
+      <BottomLayout>
+        <ArticleBottomLayout entry={entry} />
+      </BottomLayout>
+    </div>
+  </div>
 </PageLayout>

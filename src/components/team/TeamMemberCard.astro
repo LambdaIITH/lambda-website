@@ -1,10 +1,12 @@
 ---
 import SocialIcon from "./SocialIcon.astro";
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 
 interface Props {
   name: string;
   role: string;
-  image: string;
+  image: ImageMetadata;
   socialLinks: {
     github?: string;
     linkedin?: string;
@@ -32,7 +34,7 @@ const {
 >
   <div
     class:list={[
-      "relative rounded-xl overflow-hidden",
+      "relative rounded-xl overflow-hidden shadow-lg dark:shadow-none",
       isHead && "head-card-border",
     ]}
   >
@@ -41,39 +43,42 @@ const {
       class:list={[
         "absolute inset-0 bg-gradient-to-r transition-opacity duration-500",
         isHead
-          ? "from-purple-600/30 to-pink-600/30 opacity-50 group-hover:opacity-70"
-          : "from-purple-600/20 to-pink-600/20 opacity-0 group-hover:opacity-100",
+          ? "from-purple-100/70 to-pink-100/70 dark:from-purple-600/30 dark:to-pink-600/30 opacity-50 group-hover:opacity-70"
+          : "from-purple-50/50 to-pink-50/50 dark:from-purple-600/20 dark:to-pink-600/20 opacity-0 group-hover:opacity-100",
       ]}
     >
     </div>
     <div
-      class="bg-black/40 backdrop-blur-sm border border-purple-500/20 relative z-10"
+      class="bg-white/90 dark:bg-black/40 backdrop-blur-sm border border-purple-100/50 dark:border-purple-500/20 relative z-10"
     >
       {/* Image Container */}
       <div class="relative h-[250px] sm:h-[300px] lg:h-[300px] overflow-hidden">
-        <img
+        <Image
           src={image}
           alt={name}
-          width="400"
-          height="400"
+          width={400}
+          height={400}
           class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
           loading={priority ? "eager" : "lazy"}
-          decoding="async"
         />
         <div
-          class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60 group-hover:opacity-40 transition-all duration-500"
+          class="absolute inset-0 bg-gradient-to-t from-white/90 via-white/50 to-transparent dark:from-black dark:via-black/50 dark:to-transparent opacity-60 group-hover:opacity-40 transition-all duration-500"
         >
         </div>
       </div>
 
       {/* Content Container */}
-      <div class="p-4 sm:p-6 bg-black/50 backdrop-blur-sm relative z-20">
+      <div
+        class="p-4 sm:p-6 bg-white/80 dark:bg-black/50 backdrop-blur-sm relative z-20"
+      >
         <h3
-          class="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-pink-300 text-center mb-2"
+          class="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-pink-700 dark:from-purple-300 dark:to-pink-300 text-center mb-2"
         >
           {name}
         </h3>
-        <p class="text-base sm:text-lg text-purple-200/80 mb-4 text-center">
+        <p
+          class="text-base sm:text-lg text-violet-700/90 dark:text-purple-200/80 mb-4 text-center"
+        >
           {role}
         </p>
 
@@ -152,19 +157,39 @@ const {
     content: "";
     position: absolute;
     inset: -2px;
-    background: linear-gradient(45deg, #7c3aed, #d946ef, #7c3aed, #d946ef);
+    background: linear-gradient(
+      45deg,
+      theme(colors.purple.300) 0%,
+      theme(colors.pink.300) 25%,
+      theme(colors.purple.300) 50%,
+      theme(colors.pink.300) 75%,
+      theme(colors.purple.300) 100%
+    );
     border-radius: 12px;
     z-index: -1;
     animation: borderRotate 4s linear infinite;
+    @media (prefers-color-scheme: dark) {
+      background: linear-gradient(
+        45deg,
+        #7c3aed 0%,
+        #d946ef 25%,
+        #7c3aed 50%,
+        #d946ef 75%,
+        #7c3aed 100%
+      );
+    }
   }
 
   .head-card-border::after {
     content: "";
     position: absolute;
     inset: 1px;
-    background: black;
+    background: theme(colors.white);
     border-radius: 11px;
     z-index: -1;
+    @media (prefers-color-scheme: dark) {
+      background: black;
+    }
   }
 
   @keyframes borderRotate {

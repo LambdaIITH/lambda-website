@@ -1,10 +1,11 @@
 ---
 import TeamMemberCard from "./TeamMemberCard.astro";
+import type { ImageMetadata } from "astro";
 
 interface TeamMember {
   name: string;
   role: string;
-  image: string;
+  image: ImageMetadata;
   socialLinks: Record<string, string | undefined>;
 }
 
