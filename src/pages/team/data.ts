@@ -160,9 +160,9 @@ export const cores: TeamMember[] = [
     role: "Core",
     image: abdulMuqeethImg,
     socialLinks: {
-      github: "https://github.com/muqeeth",
-      linkedin: "https://www.linkedin.com/in/muqeeth/",
-      instagram: "https://instagram.com/muqeeth",
+      github: "https://github.com/muqeeth26832",
+      linkedin: "https://www.linkedin.com/in/mohammed-abdul-muqeeth-261264281/",
+      instagram: "https://instagram.com/muqeeth26832",
     },
   },
   {
