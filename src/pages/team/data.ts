@@ -250,7 +250,7 @@ export const cores: TeamMember[] = [
     role: "Core",
     image: ganeswarImg,
     socialLinks: {
-      github: "",
+      github: "https://github.com/ganeswar-velvadapu",
       linkedin: "",
       instagram: "",
     },
