@@ -10,7 +10,7 @@ import { SITE } from "@consts";
 // import MeteorShower from "@components/MeteorShower.astro";
 import { BackgroundBeamsWithCollision } from "@components/react/HeroSection";
 import { Image } from "astro:assets";
-import logo from "./assets/logo.png";
+import logo from "./assets/logoF.png";
 // import { ContainerScroll } from "@ui/container-scroll-animation"
 
 const posts = (await getCollection("blog"))
@@ -78,21 +78,24 @@ const stats = [
 ---
 
 <PageLayout title="Home" description={SITE.DESCRIPTION}>
+
   <BackgroundBeamsWithCollision client:only="react">
+
     <div
-      class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center min-h-[80vh] flex flex-col justify-center"
+      class="mt-28
+      relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center min-h-[80vh] flex flex-col justify-center"
     >
-      <div class="animate-float mb-6 sm:mb-8">
+      <div class=" animate-float mb-6 sm:mb-8">
         <Image
           src={logo}
           alt="Lambda Logo"
           width={120}
           height={120}
-          class="mx-auto filter drop-shadow-[0_0_15px_rgba(168,85,247,0.3)] w-24 sm:w-32 lg:w-40"
+          class="mx-auto filter  w-24 sm:w-32 lg:w-40"
         />
       </div>
       <h1
-        class="text-3xl sm:text-5xl lg:text-7xl font-black mb-4 sm:mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-purple-500 to-purple-600 dark:from-purple-400 dark:via-purple-300 dark:to-purple-400 animate-gradient leading-tight"
+        class="text-3xl sm:text-5xl lg:text-7xl font-black mb-4 sm:mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-purple-500 to-purple-600 dark:from-purple-400 dark:via-purple-300 dark:to-purple-400 animate-gradient leading-tight dark:text-[#9034ea]"
       >
         Lambda Dev Club
       </h1>
@@ -103,7 +106,7 @@ const stats = [
         innovative solutions and shaping tomorrow's digital landscape.
       </p>
       <div
-        class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center"
+        class="flex flex-col  sm:flex-row gap-4 sm:gap-6 justify-center items-center"
       >
         <a
           href="/projects"
