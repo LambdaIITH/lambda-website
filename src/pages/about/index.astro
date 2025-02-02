@@ -13,7 +13,7 @@ import AchievementCounter from "@components/react/AchievementCounter";
 import picture1 from "./images/1.jpg";
 import picture2 from "./images/2.jpg";
 import picture3 from "./images/3.jpg";
-import clubLogo from "./images/lambda.png";
+import clubLogo from "./images/logoF.png";
 
 // Testimonial data
 const testimonials = [
@@ -66,97 +66,106 @@ const events = [
 
 // Achievement data
 const achievements = [
-  { label: "Active Members", value: 200, icon: "👥" },
-  { label: "Projects Completed", value: 50, icon: "🚀" },
+  { label: "Active Members", value: 40, icon: "👥" },
+  { label: "Projects Completed", value: 25, icon: "🚀" },
   { label: "Hackathons Won", value: 15, icon: "🏆" },
   { label: "Workshops Conducted", value: 100, icon: "🎓" },
 ];
 ---
 
 <PageLayout title={ABOUT.TITLE} description={ABOUT.DESCRIPTION}>
-  <TopLayout>
-    <div class="flex items-center justify-center space-x-4 animate-fadeIn">
-      <Image
-        src={clubLogo}
-        alt="Lambda Dev Club Logo"
-        width={80}
-        height={80}
-        class="rounded-full"
-      />
-      <h1 class="text-5xl font-bold text-violet-600 dark:text-violet-400">
-        {ABOUT.TITLE}
-      </h1>
+  <div
+    class="relative min-h-screen bg-gradient-to-b from-purple-50 to-white dark:from-purple-950 dark:to-black"
+  >
+    {/* Purple glow effects */}
+    <div
+      class="absolute inset-0 bg-gradient-to-tr from-purple-500/5 via-transparent to-purple-500/5 dark:from-purple-900/20 dark:via-transparent dark:to-purple-900/20 pointer-events-none"
+    >
     </div>
-  </TopLayout>
 
-  <Home
-    client:only="react"
-    picture1={picture1.src}
-    picture2={picture2.src}
-    picture3={picture3.src}
-  />
+    {/* Subtle grid pattern */}
+    <div
+      class="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] dark:bg-[url('/grid-dark.svg')] pointer-events-none opacity-50"
+    >
+    </div>
+    <TopLayout />
 
-  <BottomLayout>
-    <div class="space-y-20">
-      <section class="prose dark:prose-invert max-w-none text-center space-y-6">
-        <h2 class="text-4xl font-bold text-violet-600 dark:text-violet-400">
-          Who We Are
-        </h2>
-        <p class="text-xl leading-relaxed text-gray-700 dark:text-gray-300">
-          Lambda is the premier developer club at IIT Hyderabad, fostering
-          innovation and technical excellence. Our community of passionate
-          coders, designers, and tech enthusiasts work together to push the
-          boundaries of what's possible in software development.
-        </p>
-      </section>
-
-      <section class="space-y-8">
-        <h2
-          class="text-4xl font-bold text-center text-violet-600 dark:text-violet-400"
+    <BottomLayout>
+      <div class="space-y-20">
+        {/* Who We Are Section */}
+        <section
+          class="prose dark:prose-invert max-w-none text-center space-y-6"
         >
-          Our Achievements
-        </h2>
-        <AchievementCounter client:only="react" achievements={achievements} />
-      </section>
-
-      <section class="space-y-8">
-        <h2
-          class="text-4xl font-bold text-center text-violet-600 dark:text-violet-400"
-        >
-          Upcoming Events
-        </h2>
-        <EventTimeline client:only="react" events={events} />
-      </section>
-
-      <section class="space-y-8">
-        <h2
-          class="text-4xl font-bold text-center text-violet-600 dark:text-violet-400"
-        >
-          What Our Members Say
-        </h2>
-        <TestimonialSlider client:only="react" testimonials={testimonials} />
-      </section>
-
-      <section
-        class="bg-gradient-to-r from-violet-700 to-purple-900 dark:from-violet-900 dark:to-purple-950 text-white p-8 rounded-lg shadow-xl"
-      >
-        <h2 class="text-3xl font-bold mb-6 text-center">Join Lambda Today!</h2>
-        <p class="text-xl text-center mb-8">
-          Embark on an exciting journey of learning, innovation, and growth.
-          Whether you're a coding novice or a tech wizard, there's a place for
-          you in our community.
-        </p>
-        <div class="flex justify-center">
-          <a
-            href="/join"
-            class="bg-white text-violet-700 hover:bg-violet-50 text-lg font-semibold py-2 px-6 rounded-full transition-colors duration-300"
+          <h1
+            class="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-purple-500 to-purple-600 dark:from-purple-400 dark:via-purple-300 dark:to-purple-400 animate-gradient"
           >
-            Apply Now
-          </a>
-        </div>
-      </section>
-    </div>
-  </BottomLayout>
+            Who are we ?
+          </h1>
+          <!-- <h2 class="text-4xl font-bold text-violet-600 dark:text-violet-400">
+            Who We Are
+          </h2> -->
+          <p class="text-xl leading-relaxed text-gray-700 dark:text-gray-300">
+            Lambda is the premier developer club at IIT Hyderabad, fostering
+            innovation and technical excellence. Our community of passionate
+            coders, designers, and tech enthusiasts work together to push the
+            boundaries of what's possible in software development.
+          </p>
+        </section>
+
+        {/* Achievements Section */}
+        <section class="space-y-8">
+          <h2
+            class="text-4xl font-bold text-center text-violet-600 dark:text-violet-400"
+          >
+            Our Achievements
+          </h2>
+          <AchievementCounter client:only="react" achievements={achievements} />
+        </section>
+
+        {/* Upcoming Events Section */}
+        <section class="space-y-8">
+          <h2
+            class="text-4xl font-bold text-center text-violet-600 dark:text-violet-400"
+          >
+            Upcoming Events
+          </h2>
+          <EventTimeline client:only="react" events={events} />
+        </section>
+
+        {/* Testimonials Section */}
+        <section class="space-y-8">
+          <h2
+            class="text-4xl font-bold text-center text-violet-600 dark:text-violet-400"
+          >
+            What Our Members Say
+          </h2>
+          <TestimonialSlider client:only="react" testimonials={testimonials} />
+        </section>
+
+        {/* Join Lambda Section */}
+        <section
+          class="bg-gradient-to-r from-violet-700 to-purple-900 dark:from-violet-900 dark:to-purple-950 text-white p-8 rounded-lg shadow-xl"
+        >
+          <h2 class="text-3xl font-bold mb-6 text-center">
+            Join Lambda Today!
+          </h2>
+          <p class="text-xl text-center mb-8">
+            Embark on an exciting journey of learning, innovation, and growth.
+            Whether you're a coding novice or a tech wizard, there's a place for
+            you in our community.
+          </p>
+          <div class="flex justify-center">
+            <a
+              href="/join"
+              class="bg-white text-violet-700 hover:bg-violet-50 text-lg font-semibold py-2 px-6 rounded-full transition-colors duration-300"
+            >
+              Apply Now
+            </a>
+          </div>
+        </section>
+      </div>
+    </BottomLayout>
+  </div>
 
   <style>
     @keyframes fadeIn {
@@ -172,6 +181,24 @@ const achievements = [
 
     .animate-fadeIn {
       animation: fadeIn 1.5s ease-out;
+    }
+
+    /* Gradient animation for heading */
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .animate-gradient {
+      background-size: 200% auto;
+      animation: gradient 8s linear infinite;
     }
   </style>
 </PageLayout>

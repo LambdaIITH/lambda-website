@@ -2,8 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const techStacks = [
-  { name: 'React', icon: '⚛️' },
-  { name: 'Node.js', icon: '🟩' },
+  { name: 'React', icon: '⚛' },
+  { name: 'Node.js', icon: '｡🇯‌🇸‌' },
   { name: 'Python', icon: '🐍' },
   { name: 'JavaScript', icon: '🟨' },
   { name: 'TypeScript', icon: '🔷' },
