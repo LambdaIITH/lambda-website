@@ -21,6 +21,7 @@
     "@astrojs/sitemap": "^3.2.1",
     "@astrojs/solid-js": "^4.4.2",
     "@astrojs/tailwind": "^5.1.4",
+    "@studio-freight/lenis": "^1.0.42",
     "lenis": "^1.1.18",
     "@tailwindcss/typography": "^0.5.10",
     "@types/react": "^19.0.2",
