@@ -1,5 +1,6 @@
 ---
-title: "Git 101"
+title: "Git 101 Muqeeth was here"
+github: ["https://github.com/muqeeth26832","https://github.com/adhitht"]
 summary: "All about the basics of Git"
 date: "2025-01-20"
 draft: false

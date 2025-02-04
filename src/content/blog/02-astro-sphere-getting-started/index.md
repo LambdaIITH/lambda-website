@@ -1,5 +1,6 @@
 ---
 title: "Astro Sphere: Getting Started"
+github: ["https://github.com/muqeeth26832"]
 summary: "You've downloaded and installed the project. Let's hit the ground running."
 date: "Mar 16 2024"
 draft: false

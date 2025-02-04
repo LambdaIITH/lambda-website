@@ -1,17 +1,36 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { formatDate, readingTime } from "@lib/utils";
+import BlogImages from "@components/react/BlogImages";
+import { undefined } from "astro:schema";
 
 type Props = {
   entry: CollectionEntry<"projects"> | CollectionEntry<"blog">;
 };
-
-const { entry } = Astro.props;
+const { entry } = Astro.props as Props;
 const { collection, data, body } = entry;
 const { title, summary, date } = data;
 
+// Safely access `github`, checking if it's an array or a function
+if ("github" in data) {
+  var github: string[] | undefined = data.github;
+}
+
 const demoUrl = collection === "projects" ? data.demoUrl : null;
 const repoUrl = collection === "projects" ? data.repoUrl : null;
+
+const authorsArray =
+  github &&
+  github.map((url: string, index: number) => {
+    const username = url.split("/").pop();
+
+    return {
+      id: index + 1,
+      name: username,
+      designation: "",
+      image: `https://github.com/${username}.png`,
+    };
+  });
 ---
 
 <div>
@@ -65,6 +84,23 @@ const repoUrl = collection === "projects" ? data.repoUrl : null;
   <h1 class="text-3xl font-semibold text-black dark:text-white mt-2">
     {title}
   </h1>
+  {
+    github && (
+      <div class="mt-8 p-6 bg-gray-50 dark:bg-gray-900 rounded-lg shadow-md text-center border border-gray-200 dark:border-gray-800">
+        <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">
+          📖 {authorsArray?.length === 1 ? "Author" : "Authors"}
+        </h2>
+        <p class="text-gray-500 text-sm">
+          Meet the {authorsArray?.length === 1 ? "mind" : "minds"} behind the
+          blog
+        </p>
+        <div class="mt-4">
+          <BlogImages client:only="react" authors={authorsArray} />
+        </div>
+      </div>
+    )
+  }
+
   <div class="mt-1">
     {summary}
   </div>

@@ -1,5 +1,6 @@
 ---
 title: "Lambda IITH"
+github : ["github.com/muqeeth26832"]
 summary: "You'll find these directories and files in the project. What do they do?"
 date: "Mar 17 2024"
 draft: false

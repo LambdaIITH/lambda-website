@@ -1,5 +1,6 @@
 ---
 title: "Astro Sphere: Adding a new post or project."
+github: ["https://github.com/muqeeth26832","https://github.com/adhitht"]
 summary: "Adding a new article (blog post or project) is pretty easy."
 date: "Mar 14 2024"
 draft: false

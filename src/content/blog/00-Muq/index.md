@@ -1,5 +1,6 @@
 ---
 title: "Adding my first blog post"
+github: ["https://github.com/muqeeth26832"]
 summary: "This is my first blog post"
 date: "2025-01-19"
 draft: false
