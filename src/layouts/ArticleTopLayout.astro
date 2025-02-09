@@ -1,23 +1,28 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { formatDate, readingTime } from "@lib/utils";
+import BlogImages from "@components/react/BlogImages";
 
 type Props = {
   entry: CollectionEntry<"projects"> | CollectionEntry<"blog">;
 };
-
-const { entry } = Astro.props;
+const { entry } = Astro.props as Props;
 const { collection, data, body } = entry;
 const { title, summary, date } = data;
+
+const github = "github" in data ? data.github as string[] | undefined : undefined;
 
 const demoUrl = collection === "projects" ? data.demoUrl : null;
 const repoUrl = collection === "projects" ? data.repoUrl : null;
 ---
 
 <div>
+  <!-- Back to Collection Link -->
   <a
     href={`/${collection}`}
-    class="group w-fit p-1.5 gap-1.5 text-sm flex items-center border rounded hover:bg-black/5 hover:dark:bg-white/10 border-black/15 dark:border-white/20 transition-colors duration-300 ease-in-out"
+    class="group w-fit flex items-center gap-1.5 p-1.5 text-sm border rounded transition-all duration-300 ease-in-out
+           border-black/15 dark:border-white/20 hover:bg-black/5 hover:dark:bg-white/10"
+    aria-label="Back to collection"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -42,13 +47,15 @@ const repoUrl = collection === "projects" ? data.repoUrl : null;
         class="translate-x-1 group-hover:translate-x-0 transition-all duration-300 ease-in-out"
       ></polyline>
     </svg>
-    <div
-      class="w-full group-hover:text-black group-hover:dark:text-white transition-colors duration-300 ease-in-out"
-    >
+    <span class="group-hover:text-black group-hover:dark:text-white transition-colors duration-300 ease-in-out">
       Back to {collection}
-    </div>
+    </span>
   </a>
-  <div class="flex flex-wrap text-sm uppercase mt-12 gap-3 opacity-75">
+
+  <!-- Meta Info & Authors Section -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between mt-12 gap-4">
+  <!-- Date & Reading Time -->
+  <div class="flex flex-wrap text-sm uppercase gap-3 opacity-75">
     <div class="flex items-center gap-2">
       <svg class="size-5 stroke-current">
         <use href="/ui.svg#calendar"></use>
@@ -62,50 +69,74 @@ const repoUrl = collection === "projects" ? data.repoUrl : null;
       {readingTime(body)}
     </div>
   </div>
-  <h1 class="text-3xl font-semibold text-black dark:text-white mt-2">
+
+  {github && (
+    <!-- Authors Container -->
+    <div class="flex items-center sm:flex-row sm:justify-end w-full sm:w-auto gap-2 sm:gap-4">
+      <!-- Authors Label -->
+<span class="text-lg text-gray-500 whitespace-nowrap px-2 py-1 rounded-md text-center hidden sm:block">
+  {github.length === 1 ? "Author:" : "Authors:"}
+</span>
+
+      <!-- BlogImages Container -->
+      <div class="flex items-center gap-2 flex-wrap">
+        <BlogImages
+          client:only="react"
+          authors={github.map((url, index) => ({
+            id: index + 1,
+            name: url.split("/").pop(),
+            designation: "",
+            image: `https://github.com/${url.split("/").pop()}.png`,
+          }))}
+        />
+      </div>
+    </div>
+  )}
+</div>
+
+
+  <!-- Title & Summary -->
+  <h1 class="text-3xl font-semibold text-black dark:text-white mt-4">
     {title}
   </h1>
-  <div class="mt-1">
+  <div class="mt-2">
     {summary}
   </div>
-  {
-    (demoUrl || repoUrl) && (
-      <div class="mt-4 flex flex-wrap gap-2">
-        {demoUrl && (
-          <a
-            href={demoUrl}
-            target="_blank"
-            class="group flex gap-2 items-center px-3 py-1.5 truncate rounded text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 blend"
-          >
-            <svg class="size-4">
-              <use
-                href="/ui.svg#globe"
-                class="fill-current group-hover:fill-black group-hover:dark:fill-white blend"
-              />
-            </svg>
-            <span class="text-current group-hover:text-black group-hover:dark:text-white blend">
-              See Demo
-            </span>
-          </a>
-        )}
-        {repoUrl && (
-          <a
-            href={repoUrl}
-            target="_blank"
-            class="group flex gap-2 items-center px-3 py-1.5 truncate rounded text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 blend"
-          >
-            <svg class="size-4">
-              <use
-                href="/ui.svg#link"
-                class="fill-current group-hover:fill-black group-hover:dark:fill-white blend"
-              />
-            </svg>
-            <span class="text-current group-hover:text-black group-hover:dark:text-white blend">
-              See Repository
-            </span>
-          </a>
-        )}
-      </div>
-    )
-  }
+
+  <!-- Demo & Repo Links -->
+  {(demoUrl || repoUrl) && (
+    <div class="mt-4 flex flex-wrap gap-2">
+      {demoUrl && (
+        <a
+          href={demoUrl}
+          target="_blank"
+          class="group flex gap-2 items-center px-3 py-1.5 truncate rounded text-xs md:text-sm lg:text-base border
+                 border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 transition-all duration-300 ease-in-out"
+        >
+          <svg class="size-4">
+            <use href="/ui.svg#globe" class="fill-current group-hover:fill-black group-hover:dark:fill-white" />
+          </svg>
+          <span class="text-current group-hover:text-black group-hover:dark:text-white">
+            See Demo
+          </span>
+        </a>
+      )}
+      {repoUrl && (
+        <a
+          href={repoUrl}
+          target="_blank"
+          class="group flex gap-2 items-center px-3 py-1.5 truncate rounded text-xs md:text-sm lg:text-base border
+                 border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 transition-all duration-300 ease-in-out"
+        >
+          <svg class="size-4">
+            <use href="/ui.svg#link" class="fill-current group-hover:fill-black group-hover:dark:fill-white" />
+          </svg>
+          <span class="text-current group-hover:text-black group-hover:dark:text-white">
+            See Repository
+          </span>
+        </a>
+      )}
+    </div>
+  )}
 </div>
+

@@ -1,12 +1,12 @@
 ---
 title: "Git 101"
+github: ["https://github.com/NishiB137"]
 summary: "A Beginner’s Guide to Version Control"
 date: "2025-02-2"
 draft: false
 tags:
 - Git
 - Version Control
-- Nishi
 ---
 
 <img src="/assets/blogs/07-Git-101/meme1.jpg" alt="drawing" width="200">
