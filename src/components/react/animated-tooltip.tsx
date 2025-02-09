@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   motion,
   useTransform,
@@ -19,6 +19,7 @@ export const AnimatedTooltip = ({
   }[];
 }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
   const springConfig = { stiffness: 100, damping: 5 };
   const x = useMotionValue(0);
 
@@ -32,8 +33,17 @@ export const AnimatedTooltip = ({
     springConfig
   );
 
+  // Detect if Mobile
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize(); // Check on mount
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   // Handle Mouse Move
   const handleMouseMove = (event: React.MouseEvent<HTMLImageElement>) => {
+    if (isMobile) return;
     const halfWidth = event.currentTarget.offsetWidth / 2;
     x.set(event.nativeEvent.offsetX - halfWidth);
   };
@@ -44,8 +54,9 @@ export const AnimatedTooltip = ({
         <div
           className="relative group -mr-4"
           key={item.id}
-          onMouseEnter={() => setHoveredIndex(item.id)}
-          onMouseLeave={() => setHoveredIndex(null)}
+          onMouseEnter={() => !isMobile && setHoveredIndex(item.id)}
+          onMouseLeave={() => !isMobile && setHoveredIndex(null)}
+          onClick={() => isMobile && setHoveredIndex(hoveredIndex === item.id ? null : item.id)}
         >
           <AnimatePresence mode="popLayout">
             {hoveredIndex === item.id && (
@@ -59,14 +70,16 @@ export const AnimatedTooltip = ({
                 }}
                 exit={{ opacity: 0, y: 20, scale: 0.6 }}
                 style={{ translateX, rotate, whiteSpace: "nowrap" }}
-                className="absolute -top-16 -left-1/2 translate-x-1/2 flex flex-col items-center justify-center rounded-md bg-black z-50 shadow-xl px-4 py-2 text-xs"
+                className={`absolute ${isMobile ? "top-16" : "md:-top-16 -top-10"} left-1/2 -translate-x-1/2 flex flex-col items-center justify-center rounded-md bg-black z-50 shadow-xl px-4 py-2 text-xs`}
               >
                 <div className="absolute inset-x-10 w-[20%] -bottom-px bg-gradient-to-r from-transparent via-emerald-500 to-transparent h-px z-30" />
                 <div className="absolute left-10 w-[40%] -bottom-px bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px z-30" />
-                <div className="font-bold text-white text-base relative z-30">
+                <div className="font-bold text-white text-xs sm:text-sm relative z-30">
                   {item.name}
                 </div>
-                <div className="text-white text-xs">{item.designation}</div>
+                <div className="text-white text-xs sm:text-sm">
+                  {item.designation}
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
@@ -78,10 +91,11 @@ export const AnimatedTooltip = ({
             width={100}
             src={item.image}
             alt={item.name}
-            className="object-cover object-top rounded-full h-14 w-14 border-2 border-white transition duration-500 group-hover:scale-105 group-hover:z-30"
+            className="object-cover object-top rounded-full h-12 w-12 md:h-14 md:w-14 border-2 border-white transition duration-500 group-hover:scale-105 group-hover:z-30"
           />
         </div>
       ))}
     </>
   );
 };
+
