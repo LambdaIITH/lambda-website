@@ -34,6 +34,7 @@ import lakshImg from "./images/Cores/Laksh.png";
 import meghanaSaiImg from "./images/Cores/Meghana Sai.png";
 import nishiBaranwalImg from "./images/Cores/Nishi Baranwal.png";
 import omkarKhilariImg from "./images/Cores/Omkar Khilari.png";
+import pranjalImg from "./images/Cores/Pranjal Prajapati.png";
 import rishiImg from "./images/Cores/Rishi.png";
 import samhithaImg from "./images/Cores/Samhitha.png";
 import saranImg from "./images/Cores/Saran.png";
@@ -332,6 +333,16 @@ export const cores: TeamMember[] = [
     socialLinks: {
       github: "",
       linkedin: "",
+      instagram: "",
+    },
+  },
+  {
+    name: "Pranjal Prajapati",
+    role: "Core",
+    image: pranjalImg,
+    socialLinks: {
+      github: "https://github.com/Pranjal095",
+      linkedin: "https://in.linkedin.com/in/pranjal-prajapati-258b992ab",
       instagram: "",
     },
   },
