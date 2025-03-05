@@ -31,7 +31,7 @@ Let’s set up a simple GitHub action that runs tests whenever code is pushed on
 ##### Step 1: Create a GitHub Repo
 So first we need to create our repo [where we will store our codes]. Go here [github.new](https://github.new), and fill with the basic data and then create repository.
 
-<img src="/assets/blogs/08-gh-actions/image1.png" alt="Creating Github repo" width="200">
+<img src="/assets/blogs/08-gh-actions/image1.png" alt="Creating Github repo" >
 After creating push your codes to this repo using the commands given by GitHub.
 
 ##### Step 2: Create a `.github/workflows` Directory
