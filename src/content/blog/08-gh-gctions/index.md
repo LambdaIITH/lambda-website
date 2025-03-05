@@ -31,13 +31,13 @@ Let’s set up a simple GitHub action that runs tests whenever code is pushed on
 ##### Step 1: Create a GitHub Repo
 So first we need to create our repo [where we will store our codes]. Go here [github.new](https://github.new), and fill with the basic data and then create repository.
 
-<img src="/public/assets/blogs/08-gh-actions/image1.png" alt="Creating Github repo">
+<img src="/assets/blogs/08-gh-actions/image1.png" alt="Creating Github repo" width="200">
 After creating push your codes to this repo using the commands given by GitHub.
 
 ##### Step 2: Create a `.github/workflows` Directory
 Inside your repo, create a directory named `.github/workflows`. This is where your automation scripts will stay.
 Or you can open the “Actions” tab and click on ***set up a workflow yourself***.
-<img src="/public/assets/blogs/08-gh-actions/image2.png" alt="Actions tab">
+<img src="/assets/blogs/08-gh-actions/image2.png" alt="Actions tab">
 
 ##### Step 3: Write a workflow
 Create a file inside `.github/workflows` and name it ci.yml [or whatever makes sense to you]. Example YAML:
@@ -101,11 +101,11 @@ A workflow file consists of several components:
 Push a commit to the repo and check out the “Actions” tab. Your tests will now run automatically like the below image.
 
 Workflow is running:
-<img src="/public/assets/blogs/08-gh-actions/image3.png" alt="Actions tab with running workflow">
+<img src="/assets/blogs/08-gh-actions/image3.png" alt="Actions tab with running workflow">
 
 
 After successful build:
-<img src="/public/assets/blogs/08-gh-actions/image4.png" alt="Actions tab after successful build">
+<img src="/assets/blogs/08-gh-actions/image4.png" alt="Actions tab after successful build">
 
 
 ### Advanced Features of GitHub Actions
