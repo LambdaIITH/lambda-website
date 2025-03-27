@@ -159,13 +159,21 @@ export default function WorkSection({
                       <div className="px-5 py-3 border-b border-purple-100 dark:border-purple-900/50 bg-purple-50/50 dark:bg-purple-900/20">
                         <div className="flex gap-2 flex-wrap">
                           {project.data.tags.map((tag: string) => (
-                            <Badge
+                            <Button
                               key={tag}
                               variant="outline"
                               className="bg-white/80 dark:bg-gray-900/80 text-purple-700 dark:text-purple-300 hover:bg-white dark:hover:bg-gray-900 border-purple-200 dark:border-purple-800/50"
+                              onClick={() => {
+                                localStorage.setItem(
+                                  "selectedTags",
+                                  JSON.stringify([tag]),
+                                ); // Store selected tag
+                                window.location.href = "/projects"; // Redirect
+                              }}
                             >
                               {tag}
-                            </Badge>
+                              {/* <a href="/projects">{tag}</a> */}
+                            </Button>
                           ))}
                         </div>
                       </div>

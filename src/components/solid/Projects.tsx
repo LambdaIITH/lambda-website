@@ -9,7 +9,12 @@ type Props = {
 };
 
 export default function Projects({ data, tags }: Props) {
-  const [filter, setFilter] = createSignal<Set<string>>(new Set<string>());
+  // console.log("hello", ...selected);
+  const storedTags = localStorage.getItem("selectedTags");
+  const selectedTags: string[] = storedTags ? JSON.parse(storedTags) : [];
+  const [filter, setFilter] = createSignal<Set<string>>(
+    new Set<string>(selectedTags),
+  );
   const [projects, setProjects] =
     createSignal<CollectionEntry<"projects">[]>(data);
 

@@ -23,13 +23,17 @@ export const ABOUT = {
 // Blog Page
 export const BLOG: Page = {
   TITLE: "Blog",
-  DESCRIPTION: "Writing on topics I am passionate about.",
+  DESCRIPTION: "Sharing our thoughts and experiences on topics we love",
+};
+export const PRIVACY: Page = {
+  TITLE: "Privacy Policy",
+  DESCRIPTION: "Welcome to our privacy policy page",
 };
 
 // Projects Page
 export const PROJECTS: Page = {
   TITLE: "Projects",
-  DESCRIPTION: "Recent projects I have worked on.",
+  DESCRIPTION: "Cool stuff we’ve built—innovative, bold, and kinda awesome. 🚀",
 };
 
 // Search Page
