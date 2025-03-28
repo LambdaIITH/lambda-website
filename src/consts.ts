@@ -30,6 +30,11 @@ export const PRIVACY: Page = {
   DESCRIPTION: "Welcome to our privacy policy page",
 };
 
+export const CONTACT: Page = {
+  TITLE: "Contact Us",
+  DESCRIPTION: "Get in touch with us for any inquiries, support, or feedback.",
+};
+
 // Projects Page
 export const PROJECTS: Page = {
   TITLE: "Projects",
@@ -97,4 +102,3 @@ export const SOCIALS: Socials = [
     HREF: "https://www.linkedin.com/company/lambda-iit-hyderabad",
   },
 ];
-
