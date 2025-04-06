@@ -33,3 +33,9 @@ To get started with Lambda, follow these steps:
 
 ### Contact
 For more information, visit our [website](https://lambda.iith.ac.in) or contact us at lambda@iith.ac.in.
+
+
+## 📦 Apps Script
+
+This project also includes a Google Apps Script used for backend automation.
+→ [Check out the `/apps-script` folder](./apps-script/)
