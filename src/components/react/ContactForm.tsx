@@ -1,27 +1,40 @@
 import { useState } from "react";
-import axios from "axios";
+import type { ChangeEvent, FormEvent } from "react";
+import axios, { AxiosError } from "axios";
+
+interface Popup {
+  type: "success" | "error";
+  message: string;
+}
+
+interface FormData {
+  name: string;
+  email: string;
+  message: string;
+}
 
 export default function ContactForm() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     message: "",
   });
-  const [popup, setPopup] = useState(null);
+  const [popup, setPopup] = useState<Popup | null>(null);
 
-  const handleChange = (e) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const response = await axios.post(
         import.meta.env.PUBLIC_CONTACT_FORM_URL,
-        formData,
+        JSON.stringify(formData),
         {
-          headers: { "Content-Type": "application/json" },
-          maxRedirects: 5, // Optional; axios follows redirects by default
+          headers: { "Content-Type": "text/plain" },
         },
       );
 
@@ -35,7 +48,13 @@ export default function ContactForm() {
         });
       }
     } catch (error) {
-      setPopup({ type: "error", message: "Network error. Try again later." });
+      const axiosError = error as AxiosError;
+      if (axiosError.response && axiosError.response.status === 200) {
+        setPopup({ type: "success", message: "Message sent successfully!" });
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setPopup({ type: "error", message: "Network error. Try again later." });
+      }
     }
 
     setTimeout(() => setPopup(null), 3000);
@@ -90,7 +109,7 @@ export default function ContactForm() {
             name="message"
             value={formData.message}
             onChange={handleChange}
-            rows="4"
+            rows={4}
             required
             className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:ring-2 focus:ring-purple-500 dark:bg-gray-900 dark:text-gray-100"
           />
