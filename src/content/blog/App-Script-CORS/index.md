@@ -96,7 +96,7 @@ function doPost(e) {
       return createCorsResponse(false, "Invalid data provided", headers);
     }
 
-    const sheet = SpreadsheetApp.openById("1lKdzVkWmVL5KcMTRq1Zy0fSBsdEK68zmRlZjRtWeqNQ").getSheetByName("contacts");
+    const sheet = SpreadsheetApp.openById("SHEET_ID").getSheetByName("contacts");
     if (!sheet) return createCorsResponse(false, "Sheet not found", headers);
 
     sheet.appendRow([new Date(), name, email, message]);
