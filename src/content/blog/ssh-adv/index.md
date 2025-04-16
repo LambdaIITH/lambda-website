@@ -12,7 +12,7 @@ tags:
 
 # SSH Advanced: Tunneling, Port Forwarding, and Pro Tips from Lambda Projects
 
-After mastering the [basics of SSH](../blog/ssh-basics) during my first semester at IITH's Lambda dev club, I discovered SSH's secret superpowers: tunneling and port forwarding. These techniques completely changed how I approach development and deployment for our projects.
+After mastering the [basics of SSH](../ssh-basics) during my first semester at IITH's Lambda dev club, I discovered SSH's secret superpowers: tunneling and port forwarding. These techniques completely changed how I approach development and deployment for our projects.
 
 In this post, I'll share the advanced SSH techniques that have saved me countless hours and helped our Lambda team overcome networking challenges we never thought possible.
 

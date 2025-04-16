@@ -261,7 +261,7 @@ Not necessary , but still great to know.
 
 SSH has become one of my most-used tools since joining Lambda at IITH. In my next post, I'll cover advanced SSH  techniques including tunneling, port forwarding, and config tricks that have saved me hours during project deployments.
 
-### Next blog : [Advance ssh](../blog/ssh-adv)
+### Next blog : [Advance ssh](../ssh-adv)
 
 ---
 
