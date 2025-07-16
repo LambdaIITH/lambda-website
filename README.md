@@ -1,7 +1,7 @@
+
 ## Lambda Website
 
 Lambda is the software club of the Indian Institute of Technology Hyderabad (IITH). Our mission is to foster a community of software enthusiasts, provide learning opportunities, and work on exciting projects.
-
 
 ### Built With
 - **Astro**
