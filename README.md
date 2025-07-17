@@ -5,8 +5,6 @@ Lambda is the software club of the Indian Institute of Technology Hyderabad (IIT
 
 ### Built With
 - **Astro**
-
-
 ### Features
 - **Workshops**: Regular workshops on various software technologies.
 - **Projects**: Collaborative projects to apply and enhance skills.
