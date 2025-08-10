@@ -62,6 +62,12 @@ When You access the Service by or through a mobile device, We may collect certai
 
 We may also collect information that Your browser sends whenever You visit our Service or when You access the Service by or through a mobile device.
 
+#### Location Data
+
+While using certain features of Our Service, such as the campus map, We may collect and process your device's location data. This location data is used solely to render your live location on the campus map feature.
+
+We do not share your location data with any third party, and it is not sent to any of Our servers. All processing of location data is performed locally on your device. Your location information is used in real time for display purposes only and is not stored or retained once you close the feature.
+
 ### Use of Your Personal Data
 
 The Company may use Personal Data for the following purposes:
