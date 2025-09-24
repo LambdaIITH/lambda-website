@@ -32,7 +32,9 @@ import harshvardhanPatidarImg from "./images/Cores/Harshvardhan Patidar.png";
 import jDChandanaImg from "./images/Cores/J D Chandana.png";
 import jagadeeshMerugumalaImg from "./images/Cores/Jagadeesh Merugumala.png";
 import kamalKoushikDuppalapudiImg from "./images/Cores/Kamal Koushik Duppalapudi.png";
+import kashyapNukalaImg from "./images/Cores/Kashyap Nukala.png";
 import mothukuriGreeshmikaImg from "./images/Cores/Mothukuri Greeshmika.png";
+import nathanAlvaresImg from "./images/Cores/Nathan Alvares.png";
 import panshulJindalImg from "./images/Cores/Panshul Jindal.png";
 import pSHarishImg from "./images/Cores/P S Harish.png";
 import pathriVidyaPraveenImg from "./images/Cores/Pathri Vidya Praveen.png";
@@ -41,6 +43,7 @@ import rayanHalderImg from "./images/Cores/Rayan Halder.png";
 import ronitRanjanImg from "./images/Cores/Ronit Ranjan.png";
 import rudranilBasakImg from "./images/Cores/Rudranil Basak.png";
 import sheikMuhammadSaadiqImg from "./images/Cores/Sheik Muhammad Saadiq.png";
+import sohanDasImg from "./images/Cores/Sohan Das.png";
 import sriSaiAbhinavReddyImg from "./images/Cores/Sri Sai Abhinav Reddy.png";
 import tavvaDineshReddyImg from "./images/Cores/Tavva Dinesh Reddy.png";
 
@@ -176,6 +179,18 @@ export const heads: TeamMember[] = [
     },
   },
   {
+    name: "Pranjal Prajapati",
+    role: "Club Head",
+    image: pranjalPrajapatiImg,
+    socialLinks: {
+      github: "https://github.com/Pranjal095",
+      linkedin: "",
+      twitter: "",
+      instagram: "",
+      email: "cs23btech11048@iith.ac.in",
+    },
+  },
+  {
     name: "Ankush Singh",
     role: "Club Head",
     image: ankushSinghImg,
@@ -197,18 +212,6 @@ export const heads: TeamMember[] = [
       instagram: "https://instagram.com/muqeeth26832",
       twitter: "",
       email: "ma22btech11003@iith.ac.in",
-    },
-  },
-  {
-    name: "Pranjal Prajapati",
-    role: "Club Head",
-    image: pranjalPrajapatiImg,
-    socialLinks: {
-      github: "https://github.com/Pranjal095",
-      linkedin: "",
-      twitter: "",
-      instagram: "",
-      email: "cs23btech11048@iith.ac.in",
     },
   },
 ];
@@ -324,16 +327,16 @@ export const cores: TeamMember[] = [
       instagram: "",
     },
   },
-/*  {
-    name: "Kashyap Nuakala",
+  {
+    name: "Kashyap Nukala",
     role: "Core",
-    image: "",
+    image: kashyapNukalaImg,
     socialLinks: {
       github: "NKashyap21",
       linkedin: "",
       instagram: "",
     },
-  },*/
+  },
   {
     name: "Mothukuri Greeshmika",
     role: "Core",
@@ -344,16 +347,16 @@ export const cores: TeamMember[] = [
       instagram: "",
     },
   },
- /* {
+  {
     name: "Nathan Alvares",
     role: "Core",
-    image: "",
+    image: nathanAlvaresImg,
     socialLinks: {
       github: "nathanalvares19",
       linkedin: "",
       instagram: "",
     },
-  },*/
+  },
   {
     name: "P S Harish",
     role: "Core",
@@ -434,17 +437,16 @@ export const cores: TeamMember[] = [
       instagram: "",
     },
   },
-  /*
   {
     name: "Sohan Das",
     role: "Core",
-    image: "",
+    image: sohanDasImg,
     socialLinks: {
       github: "https://github.com/Sohan256-de",
       linkedin: "",
       instagram: "",
     },
-  },*/
+  },
   {
     name: "Sri Sai Abhinav Reddy",
     role: "Core",
