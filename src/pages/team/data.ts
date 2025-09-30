@@ -47,7 +47,40 @@ import sohanDasImg from "./images/Cores/Sohan Das.png";
 import sriSaiAbhinavReddyImg from "./images/Cores/Sri Sai Abhinav Reddy.png";
 import tavvaDineshReddyImg from "./images/Cores/Tavva Dinesh Reddy.png";
 
+import adhithTLastImg from "./images/Heads_Last/Adhith T.png";
+import bhaskarLastImg from "./images/Heads_Last/Bhaskar.png";
+import dikshantLastImg from "./images/Heads_Last/Dikshant.png";
+import jashLastImg from "./images/Heads_Last/Jash.png";
 
+import pranavLastImg from "./images/UIUX_Last/Pranav.png";
+import radhikaRathiLastImg from "./images/UIUX_Last/Radhika Rathi.png";
+import smaronBoruahLastImg from "./images/UIUX_Last/Smaron Boruah.png";
+
+import abdulMuqeethLastImg from "./images/Cores_Last/Abdul Muqeeth.jpg";
+import ankushSinghLastImg from "./images/Cores_Last/Ankush Singh.png";
+import anushaKumaresanLastImg from "./images/Cores_Last/Anusha Kumaresan.png";
+import aryanLastImg from "./images/Cores_Last/Aryan.png";
+import ashwinAgarwalLastImg from "./images/Cores_Last/Ashwin Agarwal.png";
+import avyaazLastImg from "./images/Cores_Last/Avyaaz.png";
+import bhuminHirparaLastImg from "./images/Cores_Last/Bhumin Hirpara.png";
+import chaitanyaNemmaniLastImg from "./images/Cores_Last/Chaitanya Nemmani.png";
+import deekshithPatelLastImg from "./images/Cores_Last/Deekshith Patel.png";
+import ganeswarLastImg from "./images/Cores_Last/Ganeswar.png";
+import gopiCharanReddyLastImg from "./images/Cores_Last/Gopi Charan Reddy.png";
+import kSathwikLastImg from "./images/Cores_Last/K Sathwik.png";
+import kartikLastImg from "./images/Cores_Last/Kartik.png";
+import krishnaTejaLastImg from "./images/Cores_Last/Krishna Teja.png";
+import lakshLastImg from "./images/Cores_Last/Laksh.png";
+import meghanaSaiLastImg from "./images/Cores_Last/Meghana Sai.png";
+import nishiBaranwalLastImg from "./images/Cores_Last/Nishi Baranwal.png";
+import omkarKhilariLastImg from "./images/Cores_Last/Omkar Khilari.png";
+import pranjalPrajapatiLastImg from "./images/Cores_Last/Pranjal Prajapati.png";
+import rishiLastImg from "./images/Cores_Last/Rishi.png";
+import samhithaLastImg from "./images/Cores_Last/Samhitha.png";
+import saranLastImg from "./images/Cores_Last/Saran.png";
+import shravanBadgujarLastImg from "./images/Cores_Last/Shravan Badgujar.png";
+import vssusiKrishnaLastImg from "./images/Cores_Last/V S Susi Krishna.png";
+import vindhyaPaidalaLastImg from "./images/Cores_Last/Vindhya Paidala.png";
 
 
 // Define the TeamMember type
@@ -466,5 +499,245 @@ export const cores: TeamMember[] = [
       linkedin: "",
       instagram: "",
     },
+  },
+];
+
+export const heads_last: TeamMember[] = [
+  {
+    name: "Adhith T",
+    role: "Club Head",
+    image: adhithTLastImg,
+    socialLinks: {
+      github: "",
+      linkedin: "",
+      twitter: "",
+      instagram: "",
+      email: "",
+    },
+  },
+  {
+    name: "Bhaskar",
+    role: "Club Head",
+    image: bhaskarLastImg,
+    socialLinks: {
+      github: "",
+      linkedin: "",
+      twitter: "",
+      instagram: "",
+      email: "",
+    },
+  },
+  {
+    name: "Dikshant",
+    role: "Club Head",
+    image: dikshantLastImg,
+    socialLinks: {
+      github: "",
+      linkedin: "",
+      twitter: "",
+      instagram: "",
+      email: "",
+    },
+  },
+  {
+    name: "Jash",
+    role: "Club Head",
+    image: jashLastImg,
+    socialLinks: {
+      github: "",
+      linkedin: "",
+      twitter: "",
+      instagram: "",
+      email: "",
+    },
+  },
+];
+
+export const uiux_last: TeamMember[] = [
+  {
+    name: "Pranav",
+    role: "UI/UX",
+    image: pranavLastImg,
+    socialLinks: {
+      github: "",
+      linkedin: "",
+      instagram: "",
+      email: "",
+    },
+  },
+  {
+    name: "Radhika Rathi",
+    role: "UI/UX",
+    image: radhikaRathiLastImg,
+    socialLinks: {
+      github: "",
+      linkedin: "",
+      instagram: "",
+      email: "",
+    },
+  },
+  {
+    name: "Smaron Boruah",
+    role: "UI/UX",
+    image: smaronBoruahLastImg,
+    socialLinks: {
+      github: "",
+      linkedin: "",
+      instagram: "",
+      email: "",
+    },
+  },
+];
+
+export const cores_last: TeamMember[] = [
+  {
+    name: "Abdul Muqeeth",
+    role: "Core",
+    image: abdulMuqeethLastImg,
+    socialLinks: { github: "", linkedin: "", instagram: "" },
+  },
+  {
+    name: "Ankush Singh",
+    role: "Core",
+    image: ankushSinghLastImg,
+    socialLinks: { github: "", linkedin: "", instagram: "" },
+  },
+  {
+    name: "Anusha Kumaresan",
+    role: "Core",
+    image: anushaKumaresanLastImg,
+    socialLinks: { github: "", linkedin: "", instagram: "" },
+  },
+  {
+    name: "Aryan",
+    role: "Core",
+    image: aryanLastImg,
+    socialLinks: { github: "", linkedin: "", instagram: "" },
+  },
+  {
+    name: "Ashwin Agarwal",
+    role: "Core",
+    image: ashwinAgarwalLastImg,
+    socialLinks: { github: "", linkedin: "", instagram: "" },
+  },
+  {
+    name: "Avyaaz",
+    role: "Core",
+    image: avyaazLastImg,
+    socialLinks: { github: "", linkedin: "", instagram: "" },
+  },
+  {
+    name: "Bhumin Hirpara",
+    role: "Core",
+    image: bhuminHirparaLastImg,
+    socialLinks: { github: "", linkedin: "", instagram: "" },
+  },
+  {
+    name: "Chaitanya Nemmani",
+    role: "Core",
+    image: chaitanyaNemmaniLastImg,
+    socialLinks: { github: "", linkedin: "", instagram: "" },
+  },
+  {
+    name: "Deekshith Patel",
+    role: "Core",
+    image: deekshithPatelLastImg,
+    socialLinks: { github: "", linkedin: "", instagram: "" },
+  },
+  {
+    name: "Ganeswar",
+    role: "Core",
+    image: ganeswarLastImg,
+    socialLinks: { github: "", linkedin: "", instagram: "" },
+  },
+  {
+    name: "Gopi Charan Reddy",
+    role: "Core",
+    image: gopiCharanReddyLastImg,
+    socialLinks: { github: "", linkedin: "", instagram: "" },
+  },
+  {
+    name: "K Sathwik",
+    role: "Core",
+    image: kSathwikLastImg,
+    socialLinks: { github: "", linkedin: "", instagram: "" },
+  },
+  {
+    name: "Kartik",
+    role: "Core",
+    image: kartikLastImg,
+    socialLinks: { github: "", linkedin: "", instagram: "" },
+  },
+  {
+    name: "Krishna Teja",
+    role: "Core",
+    image: krishnaTejaLastImg,
+    socialLinks: { github: "", linkedin: "", instagram: "" },
+  },
+  {
+    name: "Laksh",
+    role: "Core",
+    image: lakshLastImg,
+    socialLinks: { github: "", linkedin: "", instagram: "" },
+  },
+  {
+    name: "Meghana Sai",
+    role: "Core",
+    image: meghanaSaiLastImg,
+    socialLinks: { github: "", linkedin: "", instagram: "" },
+  },
+  {
+    name: "Nishi Baranwal",
+    role: "Core",
+    image: nishiBaranwalLastImg,
+    socialLinks: { github: "", linkedin: "", instagram: "" },
+  },
+  {
+    name: "Omkar Khilari",
+    role: "Core",
+    image: omkarKhilariLastImg,
+    socialLinks: { github: "", linkedin: "", instagram: "" },
+  },
+  {
+    name: "Pranjal Prajapati",
+    role: "Core",
+    image: pranjalPrajapatiLastImg,
+    socialLinks: { github: "", linkedin: "", instagram: "" },
+  },
+  {
+    name: "Rishi",
+    role: "Core",
+    image: rishiLastImg,
+    socialLinks: { github: "", linkedin: "", instagram: "" },
+  },
+  {
+    name: "Samhitha",
+    role: "Core",
+    image: samhithaLastImg,
+    socialLinks: { github: "", linkedin: "", instagram: "" },
+  },
+  {
+    name: "Saran",
+    role: "Core",
+    image: saranLastImg,
+    socialLinks: { github: "", linkedin: "", instagram: "" },
+  },
+  {
+    name: "Shravan Badgujar",
+    role: "Core",
+    image: shravanBadgujarLastImg,
+    socialLinks: { github: "", linkedin: "", instagram: "" },
+  },
+  {
+    name: "V S Susi Krishna",
+    role: "Core",
+    image: vssusiKrishnaLastImg,
+    socialLinks: { github: "", linkedin: "", instagram: "" },
+  },
+  {
+    name: "Vindhya Paidala",
+    role: "Core",
+    image: vindhyaPaidalaLastImg,
+    socialLinks: { github: "", linkedin: "", instagram: "" },
   },
 ];

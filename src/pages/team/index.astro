@@ -3,7 +3,7 @@ import PageLayout from "../../layouts/PageLayout.astro";
 import { Boxes } from "../../components/ui/background-boxes";
 import TeamSection from "../../components/team/TeamSection.astro";
 import { Image } from "astro:assets";
-import { mentors, heads, cores, uiux } from "./data";
+import { mentors, heads, cores, uiux, heads_last, cores_last, uiux_last } from "./data";
 import TopLayout from "@layouts/TopLayout.astro";
 ---
 
@@ -59,35 +59,90 @@ import TopLayout from "@layouts/TopLayout.astro";
           </h1>
         </div>
 
-        <div class="space-y-16">
-          {mentors.length > 0 && (
-            <TeamSection
-              title="Mentors"
-              members={mentors}
-              columns="grid-cols-1 md:grid-cols-2"
-            />
-          )}
-
-          <TeamSection
-            title="Club Heads"
-            members={heads}
-            columns="grid-cols-1 md:grid-cols-2"
-            isHeadSection={true}
-            isPriority={true}
-          />
-
-          <TeamSection title="Core Members" members={cores} />
-
-          {
-            uiux.length > 0 && (
-              <TeamSection
-                title="UI/UX Team"
-                members={uiux}
-                columns="grid-cols-1 md:grid-cols-3"
-              />
-            )
-          }
+        <div class="flex justify-center mb-8 px-4">
+          <label for="team-era-select" class="sr-only">Select team era</label>
+          <select
+            id="team-era-select"
+            class="rounded-full bg-white/80 dark:bg-gray-900/80 border border-gray-200 dark:border-gray-800 py-2 px-4 text-sm shadow-sm"
+            aria-label="Select current or previous team"
+          >
+            <option value="current">Team 2025-26</option>
+            <option value="previous">Team 2024-25</option>
+          </select>
         </div>
+
+        <div class="space-y-16">
+          <div class="team-era" data-era="current">
+            {mentors.length > 0 && (
+              <TeamSection
+                title="Mentors"
+                members={mentors}
+                columns="grid-cols-1 md:grid-cols-2"
+              />
+            )}
+
+            <TeamSection
+              title="Club Heads"
+              members={heads}
+              columns="grid-cols-1 md:grid-cols-2"
+              isHeadSection={true}
+              isPriority={true}
+            />
+
+            <TeamSection title="Core Members" members={cores} />
+
+            {
+              uiux.length > 0 && (
+                <TeamSection
+                  title="UI/UX Team"
+                  members={uiux}
+                  columns="grid-cols-1 md:grid-cols-3"
+                />
+              )
+            }
+          </div>
+
+          <div class="team-era hidden" data-era="last">
+            <TeamSection
+              title="Club Heads"
+              members={heads_last}
+              columns="grid-cols-1 md:grid-cols-2"
+              isHeadSection={true}
+              isPriority={true}
+            />
+
+            <TeamSection title="Core Members" members={cores_last} />
+
+            {
+              uiux_last.length > 0 && (
+                <TeamSection
+                  title="UI/UX Team"
+                  members={uiux_last}
+                  columns="grid-cols-1 md:grid-cols-3"
+                />
+              )
+            }
+          </div>
+        </div>
+
+        <script>
+          (function () {
+            const select = document.getElementById("team-era-select");
+            const current = document.querySelector('.team-era[data-era="current"]');
+            const last = document.querySelector('.team-era[data-era="last"]');
+            if (!select || !current || !last) return;
+            select.addEventListener("change", (e) => {
+              const v = e.target.value;
+              if (v === "previous") {
+                current.classList.add("hidden");
+                last.classList.remove("hidden");
+              } else {
+                last.classList.add("hidden");
+                current.classList.remove("hidden");
+              }
+            });
+          })();
+        </script>
       </div>
     </div>
   </div>
