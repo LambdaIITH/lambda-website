@@ -131,8 +131,12 @@ import TopLayout from "@layouts/TopLayout.astro";
             const current = document.querySelector('.team-era[data-era="current"]');
             const last = document.querySelector('.team-era[data-era="last"]');
             if (!select || !current || !last) return;
-            select.addEventListener("change", (e) => {
-              const v = e.target.value;
+
+            const sel = select instanceof HTMLSelectElement ? select : null;
+            if (!sel) return;
+
+            sel.addEventListener("change", () => {
+              const v = sel.value;
               if (v === "previous") {
                 current.classList.add("hidden");
                 last.classList.remove("hidden");
