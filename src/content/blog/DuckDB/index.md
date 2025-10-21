@@ -1,3 +1,14 @@
+---
+title: "DuckDB: The Hidden Gem Powering the New Era of Local Data Analytics"
+github: ["https://github.com/hydraharish123"]
+summary: "A practical introduction to DuckDB, the \"SQLite for analytics\""
+date: "2025-10-17"
+draft: false
+tags:
+- API
+- DevTools
+---
+
 # DuckDB: The Hidden Gem Powering the New Era of Local Data Analytics
 
 ## Introduction
